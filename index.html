@@ -673,7 +673,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
         <h2>Il prossimo evento</h2>
         <p class="ev-date" id="evDate">Venerdì, dalle 22:00</p>
         <div class="seats" id="eSeats" aria-live="polite"></div>
-        <p class="lead">Musica dal vivo ogni secondo venerdì del mese. Per l'evento c'è una prenotazione a parte, sempre con la tessera ARCI.</p>
+        <p class="lead">Musica dal vivo ogni secondo venerdì del mese. Per l'evento il posto si prenota con la tessera ARCI e si paga online: il biglietto costa 20 euro a persona.</p>
         <form class="f ev-form" id="evForm" novalidate>
           <div class="fld">
             <label for="eCard">Numero tessera ARCI</label>
@@ -687,12 +687,14 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
           <div class="fld" style="max-width:260px"><label for="ePeople">Persone</label>
             <select id="ePeople"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
           </div>
+          <p class="hint" id="eTot" aria-live="polite"></p>
           <p class="err" id="evErr" role="alert"></p>
-          <button class="btn metal" type="submit" id="eSubmit"><span class="lm-label">Prenota il posto all'evento</span></button>
+          <button class="btn metal" type="submit" id="eSubmit"><span class="lm-label">Prenota e paga il biglietto</span></button>
+          <p class="hint" style="margin-top:12px">Dopo la richiesta vieni portato alla pagina di pagamento sicura di Stripe, hai 30 minuti per completarla. Il biglietto non è rimborsabile.</p>
         </form>
         <div class="ok" id="evOk" role="status" style="margin-top:26px">
-          <h3>Posto richiesto</h3>
-          <p id="evOkText">La prenotazione per l'evento è in attesa di conferma. Ti ricontattiamo al numero che hai indicato.</p>
+          <h3 id="evOkTitle">Pagamento ricevuto</h3>
+          <p id="evOkText">Il tuo posto per l'evento è confermato. Ti aspettiamo, porta con te la tessera ARCI.</p>
         </div>
       </div>
     </div>
@@ -797,8 +799,8 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   }
   function syncEvent(){return loadSeats(iso(nextEvent()),'evento').then(syncEvent0)}
   function syncEvent0(){
-    var l=meter($('#eSeats'),iso(nextEvent()),'evento'); limitPeople($('#ePeople'),l);
-    var b=$('#eSubmit'); b.disabled=l===0; b.textContent=l===0?'Evento al completo':'Prenota il posto all\'evento';
+    var l=meter($('#eSeats'),iso(nextEvent()),'evento'); limitPeople($('#ePeople'),l); if(typeof totale==='function')totale();
+    var b=$('#eSubmit'); b.disabled=l===0; b.textContent=l===0?'Evento al completo':'Prenota e paga il biglietto';
   }
   function currentPoster(){return mem.poster&&mem.poster.date===iso(nextEvent())?mem.poster:null}
   var DAYS=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
@@ -916,7 +918,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   });
 
   /* ---------- prenotazione evento ---------- */
-  var sendingE=false;
+  var sendingE=false, PREZZO_EVENTO=20;
   onSubmit($('#evForm'),function(e){
     e.preventDefault();
     if(sendingE)return;
@@ -925,14 +927,36 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     if(!name){er.textContent='Inserisci nome e cognome.';$('#eName').focus();return}
     if(phone.replace(/\D/g,'').length<7){er.textContent='Inserisci un numero di telefono valido.';$('#ePhone').focus();return}
     var ne=nextEvent(); er.textContent=''; sendingE=true; var btn=$('#eSubmit'); btn.disabled=true;
+    var go=false;
     rpc('richiedi_prenotazione',{p_tipo:'evento',p_nome:name,p_telefono:phone,p_data:iso(ne),p_persone:parseInt($('#ePeople').value,10)||1,p_nota:'',p_tessera:card})
-      .then(function(){
-        $('#evOkText').textContent='La prenotazione per '+longDate(ne).toLowerCase()+' è in attesa di conferma. Ti ricontattiamo al numero che hai indicato.';
-        self.style.display='none'; var ok2=$('#evOk'); ok2.classList.add('on'); ok2.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+      .then(function(id){
+        btn.textContent='Ti porto al pagamento…';
+        return fetch(SB+'/functions/v1/crea-pagamento',{method:'POST',headers:{'apikey':KEY,'Content-Type':'application/json'},body:JSON.stringify({id:id})})
+          .then(function(r){return r.json().catch(function(){return {}}).then(function(j){
+            if(!r.ok||!j.url)throw new Error(j.error||'Pagamento non disponibile, riprova tra poco');
+            return j.url})});
       })
+      .then(function(url){go=true;location.href=url})
       .catch(function(x){er.textContent=friendly(x);syncEvent()})
-      .then(function(){sendingE=false;btn.disabled=false});
+      .then(function(){sendingE=false;if(!go){btn.disabled=false;syncEvent0()}});
   });
+  function totale(){
+    var n=parseInt($('#ePeople').value,10)||1;
+    $('#eTot').textContent='Totale: '+(n*PREZZO_EVENTO)+' euro ('+n+(n===1?' biglietto':' biglietti')+' da '+PREZZO_EVENTO+' euro)';
+  }
+  $('#ePeople').addEventListener('change',totale); totale();
+  /* ritorno da Stripe */
+  (function(){
+    var q=location.search;
+    if(/[?&]pagamento=ok/.test(q)){
+      $('#evForm').style.display='none'; var o=$('#evOk'); o.classList.add('on');
+      $('#evOkTitle').textContent='Pagamento ricevuto';
+      $('#evOkText').textContent='Grazie! Il tuo posto è confermato. Ti aspettiamo, porta con te la tessera ARCI.';
+      setTimeout(function(){o.scrollIntoView({block:'center'})},400);
+    } else if(/[?&]pagamento=annullato/.test(q)){
+      $('#evErr').textContent='Il pagamento non è stato completato, quindi il posto non è ancora confermato. Puoi riprovare quando vuoi.';
+    }
+  })();
 
   [].forEach.call(document.querySelectorAll('img[data-from]'),function(im){var s=document.querySelector(im.getAttribute('data-from'));if(s)im.src=s.getAttribute('src')});
   renderGuest(); preload(); layout(); loadPublic();
