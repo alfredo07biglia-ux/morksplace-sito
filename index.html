@@ -123,6 +123,11 @@ form.f{display:grid;gap:18px}
 .ie-box{display:grid;gap:6px;max-width:min(420px,82vw);padding:22px 26px;border:1px dashed rgba(201,206,214,.38);border-radius:10px;text-align:center;color:var(--silver);font-size:15px}
 .ie-box strong{color:var(--text);font-weight:600;font-size:16px}
 .intro-load{position:absolute;left:50%;bottom:40px;z-index:3;transform:translateX(-50%);font-size:14px;color:var(--silver)}
+.ch-logo{position:absolute;inset:0;z-index:2;display:grid;place-items:center;pointer-events:none;will-change:opacity,transform;
+  background:radial-gradient(46% 38% at 50% 50%,rgba(38,64,104,.34) 0%,rgba(7,12,19,0) 70%)}
+.ch-logo img{width:min(760px,80vw);height:auto;filter:drop-shadow(0 0 28px rgba(120,160,230,.28));animation:logoIn 1.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes logoIn{from{opacity:0;transform:scale(.94);filter:blur(10px) drop-shadow(0 0 0 rgba(120,160,230,0))}to{opacity:1;transform:none}}
+.mark{transition:none;will-change:opacity}
 .ch{position:absolute;z-index:2;opacity:0;will-change:opacity,transform}
 .ch h1{font-size:clamp(42px,6.4vw,92px);max-width:11ch}
 .ch p{margin-top:12px;color:var(--silver);font-size:clamp(16px,1.5vw,19px)}
@@ -597,6 +602,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <canvas id="introCanvas" aria-hidden="true"></canvas>
       <div class="intro-empty" id="introEmpty"><div class="intro-photo" id="introPhoto" aria-hidden="true"></div></div>
       <p class="intro-load" id="introLoad" hidden>Caricamento <span id="introPct">0</span>%</p>
+      <div class="ch-logo" id="chLogo" aria-hidden="true"><img src="img/logo.webp" alt="" width="1620" height="291"></div>
       <div class="ch ch-1" id="ch1">
         <h1>Jazz e blues a Nizza Monferrato</h1>
         <p>Circolo ARCI in Via Crova 11</p>
@@ -912,14 +918,20 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 
   /* ---------- ingresso: foto del palco che scorre con la pagina ---------- */
   var intro=$('#ingresso'), photo=$('#introPhoto');
-  var ch1=$('#ch1'), ch2=$('#ch2'), ch3=$('#ch3'), cue=$('#cue');
+  var ch1=$('#ch1'), ch2=$('#ch2'), ch3=$('#ch3'), cue=$('#cue'), chLogo=$('#chLogo'), mark=$('.mark');
   function win(p,a,b,c,d){if(p<=a||p>=d)return 0;if(p<b)return (p-a)/(b-a);if(p<=c)return 1;return (d-p)/(d-c)}
   function show(el,o,center){el.style.opacity=o;el.style.transform=(center?'translateX(-50%) ':'')+'translateY('+((1-o)*18)+'px)';el.style.pointerEvents=o>.5?'auto':'none';el.setAttribute('aria-hidden',o<.05?'true':'false')}
   function drawIntro(){
     var r=intro.getBoundingClientRect(), span=intro.offsetHeight-window.innerHeight;
+    if(!intro.offsetHeight){mark.style.opacity='';return}
     var p=reduce?1:clamp(-r.top/span,0,1);
     if(!reduce)photo.style.transform='scale('+(1.04+p*.12)+') translateY('+(-p*2)+'%)';
-    show(ch1,win(p,-1,0,.18,.28)); show(ch2,win(p,.34,.44,.6,.7)); show(ch3,win(p,.8,.92,2,3),true);
+    /* si parte dal logo al centro: poi si dissolve e il resto entra, un pezzo alla volta */
+    var lo=reduce?0:clamp(1-(p-.04)/.16,0,1);
+    chLogo.style.opacity=String(lo);
+    chLogo.style.transform='scale('+(1+(1-lo)*.35)+')';
+    mark.style.opacity=String(reduce?1:clamp((p-.12)/.14,0,1));
+    show(ch1,win(p,.14,.26,.42,.52)); show(ch2,win(p,.5,.6,.72,.82)); show(ch3,win(p,.86,.94,2,3),true);
     cue.style.opacity=String(clamp(1-p*14,0,1));
   }
 
