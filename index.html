@@ -593,6 +593,10 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 .lb img{max-width:100%;max-height:86vh;object-fit:contain;border-radius:6px}
 .lb p{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:var(--silver);font-size:14px}
 .lb button{position:absolute;top:16px;right:16px;min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.08);cursor:pointer}
+.fld input[aria-invalid="true"]{border-color:#e0766b;box-shadow:0 0 0 3px rgba(224,118,107,.18)}
+.f-err{margin:0;padding:10px 14px;border-radius:8px;border:1px solid rgba(224,118,107,.55);background:rgba(224,118,107,.1);color:#f3b3ab;font-size:14px;line-height:1.45}
+.f-err[hidden]{display:none}
+.btn.wa.is-off{opacity:.55}
 .wa-prev{padding:14px 16px;border-radius:8px;border:1px solid var(--line);background:rgba(11,19,29,.6);color:var(--silver);font-size:15px;line-height:1.5}
 .wa-prev b{color:var(--text);font-weight:500}
 .btn.wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
@@ -774,16 +778,17 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <div>
         <form class="f" id="waForm" novalidate>
           <div class="two">
-            <div class="fld"><label for="wDate">Serata</label><select id="wDate"></select></div>
+            <div class="fld"><label for="wDate">Serata</label><select id="wDate" required aria-required="true"></select></div>
             <div class="fld"><label for="wPeople">Persone</label>
               <select id="wPeople"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
             </div>
           </div>
           <div class="two">
-            <div class="fld"><label for="wName">Nome e cognome</label><input id="wName" autocomplete="name" placeholder="Come ti chiami"></div>
-            <div class="fld"><label for="wCard">Numero tessera ARCI</label><input id="wCard" autocomplete="off" placeholder="Se ce l'hai"></div>
+            <div class="fld"><label for="wName">Nome e cognome</label><input id="wName" autocomplete="name" placeholder="Nome e cognome" required aria-required="true"></div>
+            <div class="fld"><label for="wCard">Numero tessera ARCI</label><input id="wCard" autocomplete="off" placeholder="Il numero sulla tua tessera" required aria-required="true"></div>
           </div>
           <div class="wa-prev" id="wPrev" aria-live="polite"></div>
+          <p class="f-err" id="wErr" role="alert" hidden></p>
           <a class="btn metal wa" id="wBtn" href="#prenota" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.08.9.9-3-.2-.31A8.2 8.2 0 1 1 12.04 20.1Zm4.5-6.15c-.25-.12-1.46-.72-1.69-.8-.22-.09-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.17-.29.18-.54.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25 0-.38.1-.5.12-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.17 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35 1 2.52c.12.17 1.71 2.6 4.15 3.65.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.17-.47-.29Z"/></svg><span class="lm-label" id="wBtnTxt">Scrivici su WhatsApp</span></a>
           <p class="hint" style="font-size:13px;color:var(--silver-dim)">La prenotazione è confermata quando ricevi la nostra risposta su WhatsApp.</p>
         </form>
@@ -912,12 +917,34 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     return "Ciao! Vorrei prenotare un tavolo da Mòrk's Place per "+(dd?longDate(dd).toLowerCase():'…')+" alle "+ORARIO+", per "+n+(n===1?' persona':' persone')+".\n"+
       "Nome: "+(name||'…')+"\nTessera ARCI n°: "+(card||'…')+"\nGrazie!";
   }
-  function syncWa(){
-    var m=waMessage();
-    wPrev.innerHTML='<b>Messaggio che invierai</b><br>'+esc(m).replace(/\n/g,'<br>');
-    if(hasWa){wBtn.href='https://wa.me/'+waNumber()+'?text='+encodeURIComponent(m);$('#wBtnTxt').textContent='Scrivici su WhatsApp'}
-    else{wBtn.href='tel:'+TEL_LOCALE;wBtn.removeAttribute('target');$('#wBtnTxt').textContent='Chiama per prenotare'}
+  var wErr=$('#wErr'), touched=false;
+  /* tutti i campi sono obbligatori: senza, il link a WhatsApp non parte */
+  function waMissing(){
+    var out=[];
+    if(!wDate.value)out.push([wDate,'la serata']);
+    if(!wPeople.value)out.push([wPeople,'il numero di persone']);
+    if(wName.value.trim().split(/\s+/).filter(Boolean).length<2)out.push([wName,'nome e cognome']);
+    if(wCard.value.trim().length<3)out.push([wCard,'il numero della tessera ARCI']);
+    return out;
   }
+  function showErr(miss){
+    [wDate,wPeople,wName,wCard].forEach(function(el){var bad=touched&&miss.some(function(x){return x[0]===el});if(bad)el.setAttribute('aria-invalid','true');else el.removeAttribute('aria-invalid')});
+    if(touched&&miss.length){wErr.hidden=false;wErr.textContent='Per prenotare compila tutti i campi: manca '+miss.map(function(x){return x[1]}).join(', ')+'.'}
+    else wErr.hidden=true;
+  }
+  function syncWa(){
+    var m=waMessage(), miss=waMissing(), ok=!miss.length;
+    wPrev.innerHTML='<b>Messaggio che invierai</b><br>'+esc(m).replace(/\n/g,'<br>');
+    if(!ok){wBtn.href='#prenota';wBtn.removeAttribute('target');wBtn.setAttribute('aria-disabled','true');wBtn.classList.add('is-off')}
+    else{wBtn.removeAttribute('aria-disabled');wBtn.classList.remove('is-off');wBtn.setAttribute('target','_blank')}
+    if(hasWa){if(ok)wBtn.href='https://wa.me/'+waNumber()+'?text='+encodeURIComponent(m);$('#wBtnTxt').textContent='Scrivici su WhatsApp'}
+    else{if(ok){wBtn.href='tel:'+TEL_LOCALE;wBtn.removeAttribute('target')}$('#wBtnTxt').textContent='Chiama per prenotare'}
+    showErr(miss);
+  }
+  wBtn.addEventListener('click',function(e){
+    var miss=waMissing(); if(!miss.length)return;
+    e.preventDefault(); touched=true; showErr(miss); miss[0][0].focus();
+  });
   [wDate,wPeople,wName,wCard].forEach(function(el){el.addEventListener('input',syncWa);el.addEventListener('change',syncWa)});
   $('#waForm').addEventListener('submit',function(e){e.preventDefault()});
 
