@@ -540,15 +540,23 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 .intro-empty{background:#070c13}
 .intro-photo{position:absolute;inset:-2%;background:#070c13 url(img/palco.webp) center 55%/cover no-repeat;transform:scale(1.04);will-change:transform;filter:saturate(1.05) brightness(.92)}
 .bar-photo img{object-position:50% 58%}
-.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;grid-auto-rows:clamp(130px,34vw,250px);margin-top:clamp(26px,4vw,46px)}
-@media (min-width:900px){.gal{grid-template-columns:repeat(4,1fr);gap:14px}}
-.g{position:relative;display:block;overflow:hidden;border-radius:8px;border:1px solid var(--line);background:var(--slate);padding:0;cursor:zoom-in;text-align:left}
-.g.w{grid-column:span 2}.g.t{grid-row:span 2}
+.gal{display:grid;gap:clamp(44px,7vw,88px);margin-top:clamp(30px,4vw,52px)}
+.sp-ch{display:grid;gap:14px}
+.sp-ch header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.sp-ch h3{font-size:clamp(28px,3.4vw,42px)}
+.sp-ch header p{color:var(--silver);font-size:15px;max-width:46ch}
+.sp-row{display:grid;gap:clamp(10px,1.4vw,16px)}
+.sp-hero .g{aspect-ratio:21/9}
+.sp-3{grid-template-columns:repeat(3,1fr)}.sp-3 .g{aspect-ratio:3/4.3}
+.sp-2{grid-template-columns:1fr}.sp-2 .g{aspect-ratio:16/10}
+@media (min-width:860px){.sp-2{grid-template-columns:7fr 5fr}.sp-2 .g{aspect-ratio:auto;height:clamp(300px,36vw,470px)}.sp-2.rev{grid-template-columns:5fr 7fr}}
+@media (max-width:560px){.sp-hero .g{aspect-ratio:4/3}.sp-3 .g{aspect-ratio:2/3.1}.sp-3 .g span{left:8px;bottom:8px;font-size:12px}}
+.g{position:relative;display:block;overflow:hidden;border-radius:8px;border:1px solid var(--line);background:var(--slate);padding:0;cursor:zoom-in;text-align:left;width:100%}
 .g img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .4s;filter:brightness(.9)}
 .g:hover img,.g:focus-visible img{transform:scale(1.04);filter:brightness(1.05)}
 .g::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,19,29,0) 55%,rgba(11,19,29,.85))}
 .g span{position:absolute;left:14px;bottom:12px;z-index:1;font-size:14px;color:var(--text);font-weight:500}
-.g-cta{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:clamp(18px,3vw,32px);border-radius:8px;border:1px solid rgba(207,212,219,.3);background:linear-gradient(160deg,rgba(44,66,96,.55),rgba(18,29,42,.9))}
+.g-cta{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:14px;padding:clamp(18px,3vw,32px);border-radius:8px;border:1px solid rgba(207,212,219,.3);background:linear-gradient(160deg,rgba(44,66,96,.55),rgba(18,29,42,.9))}
 .g-cta h3{font-size:clamp(26px,3vw,38px)}
 .g-cta p{color:var(--silver);font-size:15px}
 .lb{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(5,9,14,.92);padding:20px}
@@ -648,14 +656,36 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <h2>Gli spazi</h2>
       <p class="lead">Una sala blu con il palco in fondo, una sala più raccolta con i quadri, il bancone. Tutto con luce soffusa, come si usa nei jazz club.</p>
       <div class="gal" id="gal">
-        <button type="button" class="g w" data-full="img/palco.webp" data-cap="Il palco"><img src="img/palco.webp" alt="Il palco di Mòrk's Place con batteria, contrabbasso e pianoforte" loading="lazy"><span>Il palco</span></button>
-        <button type="button" class="g t" data-full="img/contrabbasso.webp" data-cap="Il contrabbasso"><img src="img/contrabbasso.webp" alt="Il contrabbasso sotto l'insegna luminosa" loading="lazy"><span>Il contrabbasso</span></button>
-        <button type="button" class="g t" data-full="img/pianoforte.webp" data-cap="Il pianoforte"><img src="img/pianoforte.webp" alt="Il pianoforte nel fascio di luce" loading="lazy"><span>Il pianoforte</span></button>
-        <button type="button" class="g w" data-full="img/sala.webp" data-cap="La sala blu"><img src="img/sala.webp" alt="La sala blu con i tavoli illuminati e il murale del trio" loading="lazy"><span>La sala blu</span></button>
+        <section class="sp-ch sp-hero">
+          <header><h3>Il palco</h3><p>Il palco intitolato a Bobby Durham: batteria, contrabbasso e pianoforte, sotto l'insegna del locale.</p></header>
+          <div class="sp-row"><button type="button" class="g" data-full="img/palco.webp" data-cap="Il palco"><img style="object-position:50% 55%" src="img/palco.webp" alt="Il palco di Mòrk's Place con batteria, contrabbasso e pianoforte" loading="lazy"><span>Il palco</span></button></div>
+        </section>
+        <section class="sp-ch">
+          <header><h3>Gli strumenti</h3><p>Sono sempre lì, pronti: chi suona da noi trova tutto montato.</p></header>
+          <div class="sp-row sp-3">
+            <button type="button" class="g" data-full="img/batteria.webp" data-cap="La batteria"><img src="img/batteria.webp" alt="La batteria arancione sul tappeto, sul palco" loading="lazy"><span>La batteria</span></button>
+            <button type="button" class="g" data-full="img/pianoforte-sgabello.webp" data-cap="Il pianoforte"><img style="object-position:40% 50%" src="img/pianoforte-sgabello.webp" alt="Il pianoforte con lo sgabello rosso sotto la scritta Bobby Durham stage" loading="lazy"><span>Il pianoforte</span></button>
+            <button type="button" class="g" data-full="img/contrabbasso.webp" data-cap="Il contrabbasso"><img src="img/contrabbasso.webp" alt="Il contrabbasso sotto l'insegna luminosa" loading="lazy"><span>Il contrabbasso</span></button>
+          </div>
+        </section>
+        <section class="sp-ch">
+          <header><h3>La sala blu</h3><p>Tavoli con la lampada accesa e il murale del trio sulla parete. Si ascolta da vicino.</p></header>
+          <div class="sp-row sp-2">
+            <button type="button" class="g" data-full="img/sala.webp" data-cap="La sala blu"><img style="object-position:50% 74%" src="img/sala.webp" alt="La sala blu con i tavoli illuminati e il murale del trio" loading="lazy"><span>La sala blu</span></button>
+            <button type="button" class="g" data-full="img/tavolo-palco.webp" data-cap="Un tavolo, una lampada"><img style="object-position:25% 50%" src="img/tavolo-palco.webp" alt="Un tavolo con la lampada accesa, il palco sullo sfondo" loading="lazy"><span>Un tavolo, una lampada</span></button>
+          </div>
+        </section>
+        <section class="sp-ch">
+          <header><h3>La sala dei quadri</h3><p>Più raccolta, con i quadri colorati sul tema della musica e la scrivania antica.</p></header>
+          <div class="sp-row sp-2 rev">
+            <button type="button" class="g" data-full="img/sala-marrone.webp" data-cap="La scrivania antica"><img style="object-position:50% 70%" src="img/sala-marrone.webp" alt="La seconda sala con la scrivania antica e il tappeto" loading="lazy"><span>La scrivania antica</span></button>
+            <button type="button" class="g" data-full="img/quadri.webp" data-cap="I quadri"><img src="img/quadri.webp" alt="La seconda sala con i quadri colorati e le lampade sui tavoli" loading="lazy"><span>I quadri</span></button>
+          </div>
+        </section>
+        <div class="g-cta"><h3>Un tavolo per martedì o giovedì?</h3><p>Scrivici su WhatsApp, il messaggio è già pronto.</p><a class="btn metal wa-go" href="#prenota"><span class="lm-label">Prenota un tavolo</span></a></div>
+        <button type="button" class="g t" data-full="img/pianoforte-sgabello.webp" data-cap="Il pianoforte"><img src="img/pianoforte-sgabello.webp" alt="Il pianoforte con lo sgabello rosso sotto la scritta Bobby Durham stage" loading="lazy"><span>Il pianoforte</span></button>
+        <button type="button" class="g t" data-full="img/tavolo-palco.webp" data-cap="Un tavolo, una lampada"><img style="object-position:22% 50%" src="img/tavolo-palco.webp" alt="Un tavolo con la lampada accesa, il palco sullo sfondo" loading="lazy"><span>Un tavolo, una lampada</span></button>
         <button type="button" class="g w" data-full="img/murale.webp" data-cap="Il murale del trio"><img src="img/murale.webp" alt="Il murale del trio jazz sulla parete" loading="lazy"><span>Il murale del trio</span></button>
-        <button type="button" class="g t" data-full="img/sala-marrone.webp" data-cap="La sala dei quadri"><img src="img/sala-marrone.webp" alt="La seconda sala con i quadri e la scrivania antica" loading="lazy"><span>La sala dei quadri</span></button>
-        <button type="button" class="g t" data-full="img/tavolo.webp" data-cap="Un tavolo, una lampada"><img src="img/tavolo.webp" alt="Un tavolo con la lampada accesa, il palco sullo sfondo" loading="lazy"><span>Un tavolo, una lampada</span></button>
-        <div class="g-cta w"><h3>Un tavolo per martedì o giovedì?</h3><p>Scrivici su WhatsApp, il messaggio è già pronto.</p><a class="btn metal wa-go" href="#prenota"><span class="lm-label">Prenota un tavolo</span></a></div>
       </div>
     </div>
   </section>
