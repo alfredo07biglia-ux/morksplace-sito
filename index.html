@@ -123,10 +123,29 @@ form.f{display:grid;gap:18px}
 .ie-box{display:grid;gap:6px;max-width:min(420px,82vw);padding:22px 26px;border:1px dashed rgba(201,206,214,.38);border-radius:10px;text-align:center;color:var(--silver);font-size:15px}
 .ie-box strong{color:var(--text);font-weight:600;font-size:16px}
 .intro-load{position:absolute;left:50%;bottom:40px;z-index:3;transform:translateX(-50%);font-size:14px;color:var(--silver)}
-.ch-logo{position:absolute;inset:0;z-index:2;display:grid;place-items:center;pointer-events:none;will-change:opacity,transform;
-  background:radial-gradient(46% 38% at 50% 50%,rgba(38,64,104,.34) 0%,rgba(7,12,19,0) 70%)}
-.ch-logo img{width:min(760px,80vw);height:auto;filter:drop-shadow(0 0 28px rgba(120,160,230,.28));animation:logoIn 1.6s cubic-bezier(.2,.7,.2,1) both}
-@keyframes logoIn{from{opacity:0;transform:scale(.94);filter:blur(10px) drop-shadow(0 0 0 rgba(120,160,230,0))}to{opacity:1;transform:none}}
+/* lampada: cono di luce sul logo (versione CSS dell'effetto "lamp") */
+.ch-logo{position:absolute;inset:0;z-index:2;pointer-events:none;will-change:opacity,transform;
+  --ly:34vh;--bg:#070c13;--lc1:#3a6bff;--lc2:#8fb2ff;--cw:min(30rem,50vw);--ease:cubic-bezier(.42,0,.58,1)}
+.lamp{position:absolute;left:0;right:0;top:var(--ly);height:0}
+.lamp>*{position:absolute}
+.lamp .cone{top:0;height:14rem;width:var(--cw);animation:lampW .8s .3s var(--ease) both}
+.lamp .cone.l{right:50%;background-image:conic-gradient(from 70deg at center top,var(--lc1),transparent,transparent)}
+.lamp .cone.r{left:50%;background-image:conic-gradient(from 290deg at center top,transparent,transparent,var(--lc1))}
+.lamp .cone i{position:absolute;background:var(--bg);z-index:2}
+.lamp .cone.l .b,.lamp .cone.r .b{left:0;right:0;bottom:0;height:10rem;-webkit-mask-image:linear-gradient(to top,#fff,transparent);mask-image:linear-gradient(to top,#fff,transparent)}
+.lamp .cone.l .s{left:0;top:0;bottom:0;width:10rem;-webkit-mask-image:linear-gradient(to right,#fff,transparent);mask-image:linear-gradient(to right,#fff,transparent)}
+.lamp .cone.r .s{right:0;top:0;bottom:0;width:10rem;-webkit-mask-image:linear-gradient(to left,#fff,transparent);mask-image:linear-gradient(to left,#fff,transparent)}
+.lamp .halo{left:50%;top:0;width:min(28rem,90vw);height:9rem;transform:translate(-50%,-50%);border-radius:50%;background:var(--lc1);opacity:.5;filter:blur(48px)}
+.lamp .core{left:50%;top:0;width:calc(var(--cw)*.53);height:9rem;transform:translate(-50%,-62%);border-radius:50%;background:var(--lc2);filter:blur(34px);animation:lampC .8s .3s var(--ease) both}
+.lamp .line{left:50%;top:-1px;height:2px;width:var(--cw);transform:translateX(-50%);background:var(--lc2);box-shadow:0 0 18px 2px rgba(143,178,255,.55);animation:lampL .8s .3s var(--ease) both}
+.lamp .cover{left:0;right:0;top:-11rem;height:11rem;background:var(--bg);z-index:3}
+.lamp-logo{position:absolute;left:0;right:0;top:calc(var(--ly) + clamp(34px,6vh,64px));display:flex;justify-content:center;z-index:4}
+.lamp-logo img{width:min(760px,80vw);height:auto;animation:lampT .9s .3s var(--ease) both}
+@keyframes lampW{from{opacity:.5;width:calc(var(--cw)*.5)}to{opacity:1;width:var(--cw)}}
+@keyframes lampC{from{width:calc(var(--cw)*.27)}to{width:calc(var(--cw)*.53)}}
+@keyframes lampL{from{width:calc(var(--cw)*.5)}to{width:var(--cw)}}
+@keyframes lampT{from{opacity:.5;transform:translateY(90px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lamp *,.lamp-logo img{animation:none!important}}
 .mark{transition:none;will-change:opacity}
 .ch{position:absolute;z-index:2;opacity:0;will-change:opacity,transform}
 .ch h1{font-size:clamp(42px,6.4vw,92px);max-width:11ch}
@@ -602,7 +621,14 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <canvas id="introCanvas" aria-hidden="true"></canvas>
       <div class="intro-empty" id="introEmpty"><div class="intro-photo" id="introPhoto" aria-hidden="true"></div></div>
       <p class="intro-load" id="introLoad" hidden>Caricamento <span id="introPct">0</span>%</p>
-      <div class="ch-logo" id="chLogo" aria-hidden="true"><img src="img/logo.webp" alt="" width="1620" height="291"></div>
+      <div class="ch-logo" id="chLogo" aria-hidden="true">
+        <div class="lamp">
+          <div class="cone l"><i class="b"></i><i class="s"></i></div>
+          <div class="cone r"><i class="b"></i><i class="s"></i></div>
+          <div class="halo"></div><div class="core"></div><div class="cover"></div><div class="line"></div>
+        </div>
+        <div class="lamp-logo"><img src="img/logo.webp" alt="" width="1620" height="291"></div>
+      </div>
       <div class="ch ch-1" id="ch1">
         <h1>Jazz e blues a Nizza Monferrato</h1>
         <p>Circolo ARCI in Via Crova 11</p>
