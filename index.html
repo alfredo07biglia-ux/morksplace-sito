@@ -538,21 +538,22 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 
 /* ---- foto del locale ---- */
 .intro-empty{background:#070c13}
-.intro-photo{position:absolute;inset:-2%;background:#070c13 url(img/palco.webp) center 55%/cover no-repeat;transform:scale(1.04);will-change:transform;filter:saturate(1.05) brightness(.92)}
+.intro-photo{position:absolute;inset:-2%;background:#070c13;transform:scale(1.04);will-change:transform;filter:saturate(1.05) brightness(.92)}
 .bar-photo img{object-position:50% 58%}
 .gal{display:grid;gap:clamp(44px,7vw,88px);margin-top:clamp(30px,4vw,52px)}
 .sp-ch{display:grid;gap:14px}
-.sp-ch header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.sp-ch header{display:flex;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
 .sp-ch h3{font-size:clamp(28px,3.4vw,42px)}
 .sp-ch header p{color:var(--silver);font-size:15px;max-width:46ch}
-.sp-row{display:grid;gap:clamp(10px,1.4vw,16px)}
-.sp-hero .g{aspect-ratio:21/9}
-.sp-3{grid-template-columns:repeat(3,1fr)}.sp-3 .g{aspect-ratio:3/4.3}
-.sp-2{grid-template-columns:1fr}.sp-2 .g{aspect-ratio:16/10}
-@media (min-width:860px){.sp-2{grid-template-columns:7fr 5fr}.sp-2 .g{aspect-ratio:auto;height:clamp(300px,36vw,470px)}.sp-2.rev{grid-template-columns:5fr 7fr}}
-@media (max-width:560px){.sp-hero .g{aspect-ratio:4/3}.sp-3 .g{aspect-ratio:2/3.1}.sp-3 .g span{left:8px;bottom:8px;font-size:12px}}
+.sp-lead .g{aspect-ratio:21/9}
+.jg{--h:230px;display:flex;flex-wrap:wrap;gap:clamp(10px,1.2vw,14px)}
+.jg::after{content:"";flex-grow:30}
+.jg .g{flex:var(--r) 1 calc(var(--r)*var(--h));min-width:0}
+.jg .g img,.sp-lead .g img{display:block;width:100%;height:auto}
+.sp-lead .g img{position:absolute;inset:0;height:100%;object-fit:cover}
+@media (max-width:760px){.jg{--h:150px!important}.sp-lead .g{aspect-ratio:4/3}}
 .g{position:relative;display:block;overflow:hidden;border-radius:8px;border:1px solid var(--line);background:var(--slate);padding:0;cursor:zoom-in;text-align:left;width:100%}
-.g img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .4s;filter:brightness(.9)}
+.g img{transition:transform .6s,filter .4s;filter:brightness(.95)}
 .g:hover img,.g:focus-visible img{transform:scale(1.04);filter:brightness(1.05)}
 .g::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,19,29,0) 55%,rgba(11,19,29,.85))}
 .g span{position:absolute;left:14px;bottom:12px;z-index:1;font-size:14px;color:var(--text);font-weight:500}
@@ -594,7 +595,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   <section class="intro" id="ingresso" aria-label="Entra da Mòrk's Place">
     <div class="intro-pin">
       <canvas id="introCanvas" aria-hidden="true"></canvas>
-      <div class="intro-empty" id="introEmpty"><div class="intro-photo" id="introPhoto" role="img" aria-label="Il palco di Mòrk's Place, con batteria, contrabbasso e pianoforte"></div></div>
+      <div class="intro-empty" id="introEmpty"><div class="intro-photo" id="introPhoto" aria-hidden="true"></div></div>
       <p class="intro-load" id="introLoad" hidden>Caricamento <span id="introPct">0</span>%</p>
       <div class="ch ch-1" id="ch1">
         <h1>Jazz e blues a Nizza Monferrato</h1>
@@ -656,31 +657,65 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <h2>Gli spazi</h2>
       <p class="lead">Il palco, le due sale e il bancone.</p>
       <div class="gal" id="gal">
-        <section class="sp-ch sp-hero">
+        <section class="sp-ch">
           <header><h3>Il palco</h3></header>
-          <div class="sp-row"><button type="button" class="g" data-full="img/palco.webp" data-cap="Il palco"><img style="object-position:50% 55%" src="img/palco.webp" alt="Il palco di Mòrk's Place con batteria, contrabbasso e pianoforte" loading="lazy"><span>Il palco</span></button></div>
+          <div class="sp-lead"><button type="button" class="g" data-full="img/palco.webp"><img src="img/palco.webp" alt="Il palco con batteria, contrabbasso e pianoforte" loading="lazy"></button></div>
+          <div class="jg" style="--h:300px">
+              <button type="button" class="g" style="--r:1.777" data-full="img/palco-sala.webp"><img src="img/palco-sala.webp" alt="Il palco visto dai tavoli" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.840" data-full="img/palco-tavoli.webp"><img src="img/palco-tavoli.webp" alt="Il palco con i tavoli davanti" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.639" data-full="img/palco-v.webp"><img src="img/palco-v.webp" alt="Il palco con la batteria in primo piano" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.639" data-full="img/palco-lampada.webp"><img src="img/palco-lampada.webp" alt="Il palco visto da un tavolo" loading="lazy"></button>
+              <button type="button" class="g" style="--r:1.777" data-full="img/insegna.webp"><img src="img/insegna.webp" alt="L'insegna luminosa Mòrk's Place Jazz & Blues House" loading="lazy"></button>
+            </div>
         </section>
         <section class="sp-ch">
           <header><h3>Gli strumenti</h3></header>
-          <div class="sp-row sp-3">
-            <button type="button" class="g" data-full="img/batteria.webp" data-cap="La batteria"><img src="img/batteria.webp" alt="La batteria arancione sul tappeto, sul palco" loading="lazy"><span>La batteria</span></button>
-            <button type="button" class="g" data-full="img/pianoforte-sgabello.webp" data-cap="Il pianoforte"><img style="object-position:40% 50%" src="img/pianoforte-sgabello.webp" alt="Il pianoforte con lo sgabello rosso sotto la scritta Bobby Durham stage" loading="lazy"><span>Il pianoforte</span></button>
-            <button type="button" class="g" data-full="img/contrabbasso.webp" data-cap="Il contrabbasso"><img src="img/contrabbasso.webp" alt="Il contrabbasso sotto l'insegna luminosa" loading="lazy"><span>Il contrabbasso</span></button>
-          </div>
+          
+          <div class="jg" style="--h:360px">
+              <button type="button" class="g" style="--r:0.592" data-full="img/batteria.webp"><img src="img/batteria.webp" alt="La batteria sul palco" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.625" data-full="img/pianoforte-sgabello.webp"><img src="img/pianoforte-sgabello.webp" alt="Il pianoforte con lo sgabello rosso" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.562" data-full="img/contrabbasso.webp"><img src="img/contrabbasso.webp" alt="Il contrabbasso" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.562" data-full="img/batteria-2.webp"><img src="img/batteria-2.webp" alt="La batteria da vicino" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.625" data-full="img/pianoforte.webp"><img src="img/pianoforte.webp" alt="La tastiera del pianoforte" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.625" data-full="img/contrabbasso-2.webp"><img src="img/contrabbasso-2.webp" alt="Il contrabbasso sotto l'insegna" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.562" data-full="img/grancassa.webp"><img src="img/grancassa.webp" alt="La grancassa della batteria" loading="lazy"></button>
+            </div>
         </section>
         <section class="sp-ch">
           <header><h3>La sala</h3></header>
-          <div class="sp-row sp-2">
-            <button type="button" class="g" data-full="img/sala.webp" data-cap="La sala"><img style="object-position:50% 74%" src="img/sala.webp" alt="La sala con i tavoli e il murale del trio sulla parete" loading="lazy"><span>La sala</span></button>
-            <button type="button" class="g" data-full="img/tavolo-palco.webp" data-cap="Il palco dalla sala"><img style="object-position:25% 50%" src="img/tavolo-palco.webp" alt="Il palco visto dai tavoli" loading="lazy"><span>Il palco dalla sala</span></button>
-          </div>
+          <div class="sp-lead"><button type="button" class="g" data-full="img/sala.webp"><img src="img/sala.webp" alt="La sala con i tavoli e il murale del trio sulla parete" loading="lazy"></button></div>
+          <div class="jg" style="--h:260px">
+              <button type="button" class="g" style="--r:0.803" data-full="img/sala-2.webp"><img src="img/sala-2.webp" alt="La sala vista dall'arco in mattoni" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.840" data-full="img/sala-3.webp"><img src="img/sala-3.webp" alt="La sala con il palco in fondo" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.662" data-full="img/sala-4.webp"><img src="img/sala-4.webp" alt="La sala con il murale" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.987" data-full="img/sala-5.webp"><img src="img/sala-5.webp" alt="I tavoli della sala" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.803" data-full="img/sala-6.webp"><img src="img/sala-6.webp" alt="I tavoli della sala" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.662" data-full="img/tavolo.webp"><img src="img/tavolo.webp" alt="Un tavolo con il palco sullo sfondo" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.770" data-full="img/sala-murale.webp"><img src="img/sala-murale.webp" alt="Il murale e il menu sul tavolo" loading="lazy"></button>
+              <button type="button" class="g" style="--r:1.976" data-full="img/sala-sax.webp"><img src="img/sala-sax.webp" alt="La parete con i quadri e la nicchia ad arco" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.750" data-full="img/nicchia.webp"><img src="img/nicchia.webp" alt="La nicchia ad arco con i tavoli" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.662" data-full="img/nicchia-2.webp"><img src="img/nicchia-2.webp" alt="Un tavolo davanti alla nicchia" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.625" data-full="img/nicchia-3.webp"><img src="img/nicchia-3.webp" alt="Un tavolo nella nicchia ad arco" loading="lazy"></button>
+              <button type="button" class="g" style="--r:1.777" data-full="img/arco-bancone.webp"><img src="img/arco-bancone.webp" alt="Il bancone visto attraverso l'arco" loading="lazy"></button>
+              <button type="button" class="g" style="--r:1.777" data-full="img/murale.webp"><img src="img/murale.webp" alt="Il murale del trio jazz" loading="lazy"></button>
+            </div>
         </section>
         <section class="sp-ch">
           <header><h3>La seconda sala</h3></header>
-          <div class="sp-row sp-2 rev">
-            <button type="button" class="g" data-full="img/sala-marrone.webp" data-cap="La seconda sala"><img style="object-position:50% 70%" src="img/sala-marrone.webp" alt="La seconda sala con i tavoli e i quadri alle pareti" loading="lazy"><span>La seconda sala</span></button>
-            <button type="button" class="g" data-full="img/quadri.webp" data-cap="La seconda sala"><img src="img/quadri.webp" alt="La seconda sala con i quadri alle pareti e i tavoli" loading="lazy"><span>La seconda sala</span></button>
-          </div>
+          <div class="sp-lead"><button type="button" class="g" data-full="img/seconda-1.webp"><img src="img/seconda-1.webp" alt="La seconda sala con i quadri alle pareti e due tavoli" loading="lazy"></button></div>
+          <div class="jg" style="--h:280px">
+              <button type="button" class="g" style="--r:0.781" data-full="img/seconda-4.webp"><img src="img/seconda-4.webp" alt="La seconda sala con la scrivania" loading="lazy"></button>
+              <button type="button" class="g" style="--r:2.538" data-full="img/seconda-2.webp"><img src="img/seconda-2.webp" alt="La parete con i quadri" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.803" data-full="img/seconda-5.webp"><img src="img/seconda-5.webp" alt="La seconda sala vista dall'ingresso" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.781" data-full="img/seconda-6.webp"><img src="img/seconda-6.webp" alt="La seconda sala" loading="lazy"></button>
+              <button type="button" class="g" style="--r:2.538" data-full="img/seconda-3.webp"><img src="img/seconda-3.webp" alt="La parete con la porta e i quadri" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.703" data-full="img/seconda-7.webp"><img src="img/seconda-7.webp" alt="La scrivania antica" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.803" data-full="img/seconda-8.webp"><img src="img/seconda-8.webp" alt="La scrivania e i quadri" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.840" data-full="img/seconda-9.webp"><img src="img/seconda-9.webp" alt="Un angolo con due quadri" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.750" data-full="img/seconda-10.webp"><img src="img/seconda-10.webp" alt="Un tavolo e due quadri" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.662" data-full="img/seconda-11.webp"><img src="img/seconda-11.webp" alt="Un tavolo sotto un quadro" loading="lazy"></button>
+              <button type="button" class="g" style="--r:0.703" data-full="img/seconda-12.webp"><img src="img/seconda-12.webp" alt="Il corridoio con i quadri" loading="lazy"></button>
+            </div>
         </section>
         <div class="g-cta"><h3>Un tavolo per martedì o giovedì?</h3><p>Scrivici su WhatsApp, il messaggio è già pronto.</p><a class="btn metal wa-go" href="#prenota"><span class="lm-label">Prenota un tavolo</span></a></div>
       </div>
@@ -914,7 +949,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 
   /* ---------- galleria: foto a tutto schermo ---------- */
   var lb=$('#lb'), lbImg=$('#lbImg'), lbCap=$('#lbCap'), lastBtn=null;
-  function openLb(b){lastBtn=b;lbImg.src=b.getAttribute('data-full');lbImg.alt=b.querySelector('img').alt;lbCap.textContent=b.getAttribute('data-cap')||'';lb.classList.add('on');$('#lbX').focus()}
+  function openLb(b){lastBtn=b;lbImg.src=b.getAttribute('data-full')||b.querySelector('img').src;lbImg.alt=b.querySelector('img').alt;lbCap.textContent=b.getAttribute('data-cap')||'';lb.classList.add('on');$('#lbX').focus()}
   function closeLb(){lb.classList.remove('on');lbImg.removeAttribute('src');if(lastBtn)lastBtn.focus()}
   $('#gal').addEventListener('click',function(e){var b=e.target.closest('.g[data-full]');if(b)openLb(b)});
   $('#lbX').addEventListener('click',closeLb);
