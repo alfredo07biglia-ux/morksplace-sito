@@ -1120,12 +1120,13 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   var lb=$('#lb'), lbImg=$('#lbImg'), lbCap=$('#lbCap'), lastBtn=null, lbList=[], lbI=0;
   /* le foto di una sala: i capitoli 1-3 sono la prima sala, il 4 la seconda */
   function roomOf(b){var ch=b.closest('.sp-ch');if(ch)return [].indexOf.call(ch.parentNode.children,ch)<3?1:2;return +b.getAttribute('data-room')||1}
-  function roomList(r){return [].filter.call(document.querySelectorAll('#gal .g[data-full]'),function(x){return roomOf(x)===r})}
-  function showLb(){var b=lbList[lbI];lbImg.src=b.getAttribute('data-full');lbImg.alt=b.querySelector('img').alt;lbCap.textContent=(lbI+1)+' / '+lbList.length;var many=lbList.length>1;$('#lbPrev').hidden=$('#lbNext').hidden=!many}
-  function openLb(b){lastBtn=b;lbList=roomList(roomOf(b));var src=b.getAttribute('data-full');lbI=Math.max(0,lbList.map(function(x){return x.getAttribute('data-full')}).indexOf(src));if(!lbList.length){lbList=[b];lbI=0}showLb();lb.classList.add('on');$('#lbX').focus()}
+  function fullOf(b){return b.getAttribute('data-full')||b.querySelector('img').src}
+  function roomList(r){return [].filter.call(document.querySelectorAll('#gal .g'),function(x){return roomOf(x)===r})}
+  function showLb(){var b=lbList[lbI];lbImg.src=fullOf(b);lbImg.alt=b.querySelector('img').alt;lbCap.textContent=(lbI+1)+' / '+lbList.length;var many=lbList.length>1;$('#lbPrev').hidden=$('#lbNext').hidden=!many}
+  function openLb(b){lastBtn=b;lbList=roomList(roomOf(b));var src=fullOf(b);lbI=Math.max(0,lbList.map(fullOf).indexOf(src));if(!lbList.length){lbList=[b];lbI=0}showLb();lb.classList.add('on');$('#lbX').focus()}
   function stepLb(d){if(!lbList.length)return;lbI=(lbI+d+lbList.length)%lbList.length;showLb()}
   function closeLb(){lb.classList.remove('on');lbImg.removeAttribute('src');if(lastBtn)lastBtn.focus()}
-  $('#gal').addEventListener('click',function(e){var b=e.target.closest('.g[data-full]');if(b)openLb(b)});
+  $('#gal').addEventListener('click',function(e){var b=e.target.closest('.g');if(b)openLb(b)});
   $('#folders').addEventListener('click',function(e){var b=e.target.closest('.gf-sheet');if(b)openLb(b)});
   $('#lbX').addEventListener('click',closeLb);
   $('#lbPrev').addEventListener('click',function(){stepLb(-1)});
@@ -1147,7 +1148,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       var hit=r.querySelector('.gf-hit'), files=r.querySelector('.gf-files'), list=roomList(+r.getAttribute('data-room'));
       /* numero di ogni foto nella sua sala */
       [].forEach.call(r.querySelectorAll('.gf-sheet'),function(sh){
-        var i=list.map(function(x){return x.getAttribute('data-full')}).indexOf(sh.getAttribute('data-full'));
+        var i=list.map(fullOf).indexOf(fullOf(sh));
         sh.querySelector('.gf-sheet-meta').textContent=(i<0?'':('0'+(i+1)).slice(-2)+' / '+list.length);
       });
       function setOpen(o){if(o)r.setAttribute('data-open','');else r.removeAttribute('data-open');hit.setAttribute('aria-expanded',String(o));files.toggleAttribute('inert',!o)}
