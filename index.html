@@ -118,15 +118,11 @@ form.f{display:grid;gap:18px}
 /* ---------- ingresso a fotogrammi ---------- */
 .intro{position:relative;height:420vh}
 .intro-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#070c13}
-#introCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.intro-video{position:absolute;top:0;left:50%;height:100%;width:min(100%,calc(100svh*9/16));transform:translateX(-50%);object-fit:cover;background:#070c13;opacity:0;pointer-events:none}
+/* schermi larghi: il video verticale sta al centro e sfuma ai lati, nel buio del sito */
+@media (min-aspect-ratio:9/16){.intro-video{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}}
 .intro-pin::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(0deg,rgba(7,12,19,.72) 0%,rgba(7,12,19,0) 46%),linear-gradient(90deg,rgba(7,12,19,.5) 0%,rgba(7,12,19,0) 40%,rgba(7,12,19,0) 60%,rgba(7,12,19,.5) 100%)}
-.intro-empty{position:absolute;inset:0;display:grid;justify-items:center;align-content:start;padding-top:19vh;
-  background:radial-gradient(55% 48% at 50% 38%,#1d3048 0%,#0b131d 72%)}
-.intro-empty[hidden]{display:none}
-.ie-box{display:grid;gap:6px;max-width:min(420px,82vw);padding:22px 26px;border:1px dashed rgba(201,206,214,.38);border-radius:10px;text-align:center;color:var(--silver);font-size:15px}
-.ie-box strong{color:var(--text);font-weight:600;font-size:16px}
-.intro-load{position:absolute;left:50%;bottom:40px;z-index:3;transform:translateX(-50%);font-size:14px;color:var(--silver)}
 /* lampada: cono di luce sul logo (versione CSS dell'effetto "lamp") */
 .ch-logo{position:absolute;inset:0;z-index:2;pointer-events:none;will-change:opacity,transform;
   --ly:34vh;--bg:#070c13;--lc1:#3a6bff;--lc2:#8fb2ff;--cw:min(30rem,50vw);--ease:cubic-bezier(.42,0,.58,1)}
@@ -465,7 +461,7 @@ body::before{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none
 @keyframes lgDrift{to{transform:translate3d(4%,-3%,0) scale(1.08)}}
 
 /* superfici principali */
-.views,.live,.totop,.table-banner,.panel,.stat,.seats,.card-note,.dchip,.seg,.switch-card,.ie-box,.nocard,.ok,.mtable,.poster-empty,.floor{
+.views,.live,.totop,.table-banner,.panel,.stat,.seats,.card-note,.dchip,.seg,.switch-card,.nocard,.ok,.mtable,.poster-empty,.floor{
   background:var(--lg-shine),var(--lg-fill);border:1px solid var(--lg-edge);
   box-shadow:var(--lg-in),var(--lg-out);backdrop-filter:var(--lg-blur);-webkit-backdrop-filter:var(--lg-blur)}
 /* superfici dentro altre superfici: solo il riflesso, niente ombra */
@@ -565,8 +561,6 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 }
 
 /* ---- foto del locale ---- */
-.intro-empty{background:#070c13}
-.intro-photo{position:absolute;inset:-2%;background:#070c13;transform:scale(1.04);will-change:transform;filter:saturate(1.05) brightness(.92)}
 .bar-photo img{object-position:50% 58%}
 .gal{display:grid;gap:clamp(44px,7vw,88px);margin-top:clamp(30px,4vw,52px)}
 .sp-ch{display:grid;gap:14px}
@@ -649,9 +643,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 
   <section class="intro" id="ingresso" aria-label="Entra da Mòrk's Place">
     <div class="intro-pin">
-      <canvas id="introCanvas" aria-hidden="true"></canvas>
-      <div class="intro-empty" id="introEmpty"><div class="intro-photo" id="introPhoto" aria-hidden="true"></div></div>
-      <p class="intro-load" id="introLoad" hidden>Caricamento <span id="introPct">0</span>%</p>
+      <video class="intro-video" id="introVideo" muted playsinline preload="auto" poster="img/hero-poster.webp" tabindex="-1" aria-hidden="true" disablepictureinpicture></video>
       <div class="ch-logo" id="chLogo" aria-hidden="true">
         <div class="lamp">
           <div class="cone l"><i class="b"></i><i class="s"></i></div>
@@ -989,20 +981,45 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     syncWa();
   }
 
-  /* ---------- ingresso: foto del palco che scorre con la pagina ---------- */
-  var intro=$('#ingresso'), photo=$('#introPhoto');
+  /* ---------- ingresso: il video avanza con lo scroll ---------- */
+  var intro=$('#ingresso'), vid=$('#introVideo');
   var ch1=$('#ch1'), ch2=$('#ch2'), ch3=$('#ch3'), cue=$('#cue'), chLogo=$('#chLogo'), mark=$('.mark');
+  var V_M='video/hero-m.mp4', V_D='video/hero-d.mp4';
+  var vDur=0, vCur=0, vWant=0, vSet=-1, vReady=false, vRun=false;
   function win(p,a,b,c,d){if(p<=a||p>=d)return 0;if(p<b)return (p-a)/(b-a);if(p<=c)return 1;return (d-p)/(d-c)}
   function show(el,o,center){el.style.opacity=o;el.style.transform=(center?'translateX(-50%) ':'')+'translateY('+((1-o)*18)+'px)';el.style.pointerEvents=o>.5?'auto':'none';el.setAttribute('aria-hidden',o<.05?'true':'false')}
+  /* il video si carica solo con movimento ridotto spento e senza risparmio dati: altrimenti resta la foto */
+  var cn=navigator.connection||{}, light=reduce||cn.saveData||/(^|-)2g$/.test(cn.effectiveType||'');
+  function loadVideo(){
+    if(light||vid.getAttribute('src'))return;
+    var u=window.matchMedia('(min-width:900px)').matches?V_D:V_M;
+    vid.addEventListener('loadedmetadata',function(){vDur=vid.duration||0;vReady=vDur>0;drawIntro()},{once:true});
+    /* iPhone: serve far partire e fermare il video una volta per mostrare i fotogrammi */
+    vid.addEventListener('loadeddata',function(){var q=vid.play();if(q&&q.then)q.then(function(){vid.pause();vid.currentTime=vCur}).catch(function(){})},{once:true});
+    if(u.indexOf('data:')===0){fetch(u).then(function(r){return r.blob()}).then(function(b){vid.src=URL.createObjectURL(b)})}
+    else vid.src=u;
+  }
+  window.addEventListener('load',function(){setTimeout(loadVideo,300)});
+  function scrub(){
+    vRun=false;
+    if(!vReady)return;
+    var d=vWant-vCur;
+    vCur=Math.abs(d)<.004?vWant:vCur+d*.16;
+    if(!vid.seeking&&Math.abs(vCur-vSet)>=.02){vSet=vCur;vid.currentTime=vCur}
+    if(Math.abs(vWant-vCur)>=.004||Math.abs(vCur-vSet)>=.02)vRun=true;
+    if(vRun)requestAnimationFrame(scrub);
+  }
   function drawIntro(){
     var r=intro.getBoundingClientRect(), span=intro.offsetHeight-window.innerHeight;
     if(!intro.offsetHeight){mark.style.opacity='';return}
     var p=reduce?1:clamp(-r.top/span,0,1);
-    if(!reduce)photo.style.transform='scale('+(1.04+p*.12)+') translateY('+(-p*2)+'%)';
-    /* si parte dal logo al centro: poi si dissolve e il resto entra, un pezzo alla volta */
+    /* si parte dal logo al centro: poi si dissolve, entra il video e il resto, un pezzo alla volta */
     var lo=reduce?0:clamp(1-(p-.04)/.16,0,1);
     chLogo.style.opacity=String(lo);
     chLogo.style.transform='scale('+(1+(1-lo)*.35)+')';
+    vid.style.opacity=String(reduce?1:clamp((p-.03)/.16,0,1));
+    if(p>0&&!light)loadVideo();
+    if(vReady){vWant=clamp((p-.1)/.88,0,1)*(vDur-.05);if(!vRun){vRun=true;requestAnimationFrame(scrub)}}
     mark.style.opacity=String(reduce?1:clamp((p-.12)/.14,0,1));
     show(ch1,win(p,.14,.26,.42,.52)); show(ch2,win(p,.5,.6,.72,.82)); show(ch3,win(p,.86,.94,2,3),true);
     cue.style.opacity=String(clamp(1-p*14,0,1));
