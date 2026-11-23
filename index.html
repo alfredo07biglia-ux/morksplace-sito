@@ -49,8 +49,8 @@
   --gutter:clamp(18px,5vw,64px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--ink);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;overflow-x:clip}
+body{background:var(--ink);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -1193,10 +1193,10 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   /* ---------- torna su ---------- */
   var toTop=$('#toTop');
   function drawTop(){toTop.classList.toggle('on',window.scrollY>window.innerHeight*1.2)}
-  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});$('.mark').focus()});
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,left:0,behavior:reduce?'auto':'smooth'});$('.mark').focus({preventScroll:true})});
 
   var ticking=false;
-  function onScroll(){ if(ticking)return; ticking=true; requestAnimationFrame(function(){drawIntro();drawThread();drawRail();drawTop();ticking=false}) }
+  function onScroll(){ if(window.scrollX)window.scrollTo(0,window.scrollY); /* la pagina non deve mai spostarsi di lato */ if(ticking)return; ticking=true; requestAnimationFrame(function(){drawIntro();drawThread();drawRail();drawTop();ticking=false}) }
   function layout(){ murBox=null; thKey=''; drawIntro(); drawThread(); drawRail(); drawTop(); }
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',layout);
