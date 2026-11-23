@@ -171,6 +171,18 @@ form.f{display:grid;gap:18px}
 @keyframes lampL{from{width:calc(var(--cw)*.5)}to{width:var(--cw)}}
 @keyframes lampT{from{opacity:.5;transform:translateY(90px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.lamp *,.lamp-logo img{animation:none!important}}
+/* telefono: la lampada non tocca i bordi dello schermo, il fascio è più stretto e sfuma, il logo è più grande */
+@media (max-width:759px){
+  .ch-logo{--cw:38vw;--ly:31vh}
+  .lamp .cone{height:17rem}
+  .lamp .cone.l .s,.lamp .cone.r .s{width:62%}
+  .lamp .line{box-shadow:0 0 14px 1px rgba(143,178,255,.6);-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+  .lamp .halo{width:70vw;opacity:.38}
+  .lamp{height:20rem;-webkit-mask-image:radial-gradient(ellipse 50% 100% at 50% 0,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 50% 100% at 50% 0,#000 50%,transparent 100%)}
+  .lamp .cover{-webkit-mask-image:linear-gradient(to top,#000 0,#000 100%);background:linear-gradient(to top,var(--bg) 0%,var(--bg) 55%,rgba(7,12,19,0) 100%)}
+  .lamp-logo{top:calc(var(--ly) + 30px)}
+  .lamp-logo img{width:88vw}
+}
 .mark{transition:none;will-change:opacity}
 .ch{position:absolute;z-index:2;opacity:0;will-change:opacity,transform}
 .ch h1{font-size:clamp(42px,6.4vw,92px);max-width:11ch}
@@ -207,8 +219,10 @@ form.f{display:grid;gap:18px}
 /* ---------- al bancone ---------- */
 .bar-grid{display:grid;gap:clamp(28px,5vw,72px);align-items:center}
 @media (min-width:900px){.bar-grid{grid-template-columns:6fr 5fr}}
-.bar-photo{border-radius:6px;overflow:hidden;aspect-ratio:4/5;max-height:82vh;background:var(--slate)}
-.bar-photo img{width:100%;height:100%;object-fit:cover;object-position:28% 72%}
+.bar-photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;max-height:74vh;background:var(--slate);box-shadow:0 30px 60px -28px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.06)}
+.bar-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(7,12,19,0) 55%,rgba(7,12,19,.55) 100%)}
+@media (max-width:899px){.bar-photo{max-height:62vh;width:100%}}
+.bar-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
 .spirits{display:grid;gap:0 28px;margin-top:30px}
 @media (min-width:520px){.spirits{grid-template-columns:1fr 1fr}}
 .spirits div{padding:16px 0;border-top:1px solid var(--line)}
@@ -604,7 +618,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
 /* ---- foto del locale ---- */
 .intro-empty{background:#070c13}
 .intro-photo{position:absolute;inset:-2%;background:#070c13;transform:scale(1.04);will-change:transform;filter:saturate(1.05) brightness(.92)}
-.bar-photo img{object-position:50% 58%}
+.bar-photo img{object-position:50% 35%}
 .gal{display:grid;gap:clamp(44px,7vw,88px);margin-top:clamp(30px,4vw,52px)}
 .sp-ch{display:grid;gap:14px}
 .sp-ch header{display:flex;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
