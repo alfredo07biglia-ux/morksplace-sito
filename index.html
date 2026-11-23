@@ -274,6 +274,8 @@ form.f{display:grid;gap:18px}
 .poster-ev::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,12,19,0) 45%,rgba(7,12,19,.9) 100%)}
 .poster-ev .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(20px,3.4vw,36px);display:grid;gap:8px}
 .poster-ev small{font-size:15px;color:var(--accent);font-weight:500}
+.poster-ev .kind{font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--silver)}
+.poster-ev img{filter:grayscale(1) contrast(1.05)}
 .poster-ev strong{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,60px);line-height:1;color:var(--text)}
 .poster-empty{aspect-ratio:1;max-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:clamp(24px,4vw,44px);
   border:1px solid rgba(207,212,219,.42);border-radius:14px;
@@ -907,7 +909,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
         <h2>Il prossimo evento</h2>
         <p class="ev-date" id="evDate">Venerdì, dalle 20:30</p>
         <p class="lead" id="evLead">Musica dal vivo un venerdì al mese: la data qui sopra è indicativa, quella confermata la trovi sul canale WhatsApp. Ingresso con la tessera ARCI.</p>
-        <div class="card-note ev-note">
+        <div class="card-note ev-note" id="evHow">
           <strong>Come si prenota il posto al concerto</strong>
           <p>Lo comunichiamo a breve. Iscriviti al canale WhatsApp: locandina, programma e novità arrivano prima lì.</p>
         </div>
@@ -1004,7 +1006,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   function secondFriday(y,m){var d=new Date(y,m,1,12);return new Date(y,m,1+((5-d.getDay()+7)%7)+7,12)}
   function isEventDay(d){return iso(d)===iso(secondFriday(d.getFullYear(),d.getMonth()))}
   /* evento confermato: quando c'è, vale lui; altrimenti la data indicativa (secondo venerdì) */
-  var EVENTO={data:'2026-11-27', artista:'Marco Detto', foto:''};
+  var EVENTO={data:'2026-11-27', ora:'21:45', artista:'Marco Detto', tipo:'Piano solo', foto:'img/marco-detto.webp', tel:'347 451 3225', biglietto:'10 €'};
   function confirmedEvent(){if(!EVENTO.data)return null;var d=pd(EVENTO.data);return d>=today12()?d:null}
   function nextEvent(){var c=confirmedEvent();if(c)return c;var t=today12(),sf=secondFriday(t.getFullYear(),t.getMonth());return sf>=t?sf:secondFriday(t.getFullYear(),t.getMonth()+1)}
   function upcomingNights(n){var out=[],d=today12();for(var i=0;i<60&&out.length<n;i++){var w=d.getDay();if(w>=2&&w<=4)out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
@@ -1092,16 +1094,19 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       lt.textContent=(ev?'Musica dal vivo '+when:'Apre '+when)+' alle '+ORARIO;
     }
     var ne=nextEvent(), label=longDate(ne);
-    $('#evDate').textContent=label+', dalle '+ORARIO+(confirmedEvent()?'':' (data indicativa)');
-    if(confirmedEvent())$('#evLead').textContent='Suona '+EVENTO.artista+'. Musica dal vivo al bancone, ingresso con la tessera ARCI.';
-    $('#doveEv').textContent=(confirmedEvent()?'Il prossimo: ':'Data indicativa: ')+label.toLowerCase()+(confirmedEvent()?' con '+EVENTO.artista:'');
+    $('#evDate').textContent=confirmedEvent()?label+', ore '+EVENTO.ora:label+', dalle '+ORARIO+' (data indicativa)';
+    if(confirmedEvent()){
+      $('#evLead').textContent=EVENTO.artista+', '+EVENTO.tipo.toLowerCase()+': standard, composizioni originali e improvvisazione. Biglietto '+EVENTO.biglietto+', ingresso riservato ai soci ARCI.';
+      $('#evHow').innerHTML='<strong>Posti limitati: prenota il tavolo</strong><p>Chiama o scrivi al <a href="tel:+39'+EVENTO.tel.replace(/\s/g,'')+'" style="color:var(--text);text-underline-offset:4px">'+esc(EVENTO.tel)+'</a>. Per entrare serve la tessera ARCI: se non ce l\'hai, <a href="#tessera" style="color:var(--text);text-underline-offset:4px">chiedila qui</a>.</p>';
+    }
+    $('#doveEv').textContent=(confirmedEvent()?'Il prossimo: ':'Data indicativa: ')+label.toLowerCase()+(confirmedEvent()?', ore '+EVENTO.ora+', '+EVENTO.artista:'');
     var po=mem.poster&&mem.poster.date===iso(ne)?mem.poster:null, box=$('#poster');
     var ce=confirmedEvent(), key=po?po.img:(ce?'ev:'+EVENTO.artista+EVENTO.foto:'vuoto:'+label);
     if(box.getAttribute('data-k')!==key){
       box.setAttribute('data-k',key);
       box.innerHTML = po
         ? '<img src="'+po.img+'" alt="Locandina dell\'evento di '+esc(label.toLowerCase())+'">'
-        : ce&&EVENTO.foto ? '<div class="poster-ev"><img src="'+EVENTO.foto+'" alt="'+esc(EVENTO.artista)+'"><div class="cap"><small>'+esc(label)+', dalle '+ORARIO+'</small><strong>'+esc(EVENTO.artista)+'</strong></div></div>'
+        : ce&&EVENTO.foto ? '<div class="poster-ev"><img src="'+EVENTO.foto+'" alt="'+esc(EVENTO.artista)+', ritratto in bianco e nero"><div class="cap"><small>'+esc(label)+', ore '+EVENTO.ora+'</small><strong>'+esc(EVENTO.artista)+'</strong><span class="kind">'+esc(EVENTO.tipo)+'</span></div></div>'
         : ce ? '<div class="poster-empty"><small>'+esc(label)+', dalle '+ORARIO+'</small><strong>'+esc(EVENTO.artista)+'</strong><p>Musica dal vivo al Mòrk\'s Place. Ingresso con la tessera ARCI.</p></div>'
         : '<div class="poster-empty"><small>'+esc(label)+'</small><strong>Programma in arrivo</strong><p>Chi suona lo annunciamo sul canale WhatsApp, insieme alla locandina.</p></div>';
     }
