@@ -1091,12 +1091,10 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     if(reduce){murP.forEach(function(el){el.style.strokeDashoffset='0'});murLead.style.strokeDashoffset='1';return}
     var n=murP.length;
     /* .14-.84 il murale si disegna un tratto dopo l'altro; completo con "Benvenuti";
-       .9-1 si smonta al contrario e intanto nasce la striscia che scende e diventa il filo del sito */
-    var undo=clamp((p-.9)/.09,0,1);
+       .9-1 dal murale nasce la striscia che scende e diventa il filo del sito */
     for(var i=0;i<n;i++){
       var a=.14+.66*i/n, b=a+.66/n*2.4, v=sstep(a,b,p);
-      var ra=1-(i+1)/n, rb=ra+1.8/n, u=clamp((undo-ra)/(rb-ra),0,1);
-      setDash(murP[i],u>0?1+u:v,murP[i].getAttribute('data-r')==='1');
+      setDash(murP[i],v,murP[i].getAttribute('data-r')==='1'); /* il murale resta intero: se ne va solo quando l'ingresso esce dallo schermo */
     }
     murLead.style.strokeDashoffset=String(1-sstep(.9,1,p));
   }
