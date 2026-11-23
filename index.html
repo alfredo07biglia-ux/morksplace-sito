@@ -767,7 +767,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   <section class="facts" aria-label="Il locale in breve">
     <div class="wrap">
       <div class="fact"><b>Martedì, mercoledì e giovedì</b><span>su prenotazione</span></div>
-      <div class="fact"><b>Un venerdì al mese</b><span>musica dal vivo dalle 20:30, la data sul canale WhatsApp</span></div>
+      <div class="fact"><b>Un venerdì al mese</b><span>musica dal vivo, la data la trovi sul canale WhatsApp</span></div>
     </div>
   </section>
 
@@ -910,7 +910,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <div class="poster" id="poster"></div>
       <div>
         <h2>Il prossimo evento</h2>
-        <p class="ev-date" id="evDate">Venerdì, dalle 20:30</p>
+        <p class="ev-date" id="evDate">Un venerdì al mese</p>
         <p class="lead" id="evLead">Musica dal vivo un venerdì al mese: la data qui sopra è indicativa, quella confermata la trovi sul canale WhatsApp. Ingresso con la tessera ARCI.</p>
         <div class="card-note ev-note" id="evHow">
           <strong>Come si prenota il posto al concerto</strong>
@@ -1097,7 +1097,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       lt.textContent=(ev?'Musica dal vivo '+when:'Apre '+when)+' alle '+ORARIO;
     }
     var ne=nextEvent(), label=longDate(ne);
-    $('#evDate').textContent=confirmedEvent()?label+', ore '+EVENTO.ora:label+', dalle '+ORARIO+' (data indicativa)';
+    $('#evDate').textContent=confirmedEvent()?label+', ore '+EVENTO.ora:label+' (data indicativa)';
     if(confirmedEvent()){
       $('#evLead').textContent=EVENTO.artista+', '+EVENTO.tipo.toLowerCase()+': standard, composizioni originali e improvvisazione. Biglietto '+EVENTO.biglietto+', ingresso riservato ai soci ARCI.';
       $('#evHow').innerHTML='<strong>Posti limitati: prenota il tavolo</strong><p>Chiama o scrivi al <a href="tel:+39'+EVENTO.tel.replace(/\s/g,'')+'" style="color:var(--text);text-underline-offset:4px">'+esc(EVENTO.tel)+'</a>. Per entrare serve la tessera ARCI: se non ce l\'hai, <a href="#tessera" style="color:var(--text);text-underline-offset:4px">chiedila qui</a>.</p>';
