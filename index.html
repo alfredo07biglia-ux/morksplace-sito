@@ -732,7 +732,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
         <p>Un venerdì al mese, musica dal vivo.</p>
       </div>
       <div class="ch ch-3" id="ch3">
-        <h2 class="shine">Benvenuti da Mòrk's Place</h2>
+        <h2 class="shine">Benvenuti al Mòrk's Place</h2>
         <div class="cta">
           <span class="live" id="liveBadge"><i></i><b id="liveText" style="font-weight:500">Apre martedì alle 20:30</b></span>
           <a class="btn metal" href="#prenota"><span class="lm-label">Prenota un tavolo</span></a>
@@ -1124,8 +1124,11 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   }
   function fitMural(){
     var W=window.innerWidth,H=window.innerHeight, hdr=$('.top')?$('.top').getBoundingClientRect().bottom:60;
-    var txtTop=H*.6; [ch1,ch2,ch3].forEach(function(c){var tr=c.style.transform;c.style.transform='translateX(-50%)';var b=textBox(c);c.style.transform=tr;if(b)txtTop=Math.min(txtTop,b.t)});
-    var zoneT=Math.max(H*.1,hdr+10), zoneH=Math.max(60,Math.min(H*.5,txtTop-24-zoneT));
+    var zoneT=Math.max(H*.1,hdr+10), zoneH=H*.5;
+    if(H<520){ /* schermo basso: il murale sta tra l'intestazione e le scritte */
+      var txtTop=H*.6; [ch1,ch2,ch3].forEach(function(c){var tr=c.style.transform;c.style.transform='translateX(-50%)';var b=textBox(c);c.style.transform=tr;if(b&&b.t>zoneT+40)txtTop=Math.min(txtTop,b.t)});
+      zoneH=Math.max(90,Math.min(H*.5,txtTop-24-zoneT));
+    }
     var w=Math.min(W*.96,1500,zoneH*1500/844), sc=w/1500, h=844*sc;
     var x=(W-w)/2, y=zoneT+(zoneH-h)/2;
     murG.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+') scale('+sc.toFixed(4)+')');
@@ -1141,6 +1144,9 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     } else murLead.setAttribute('d','M'+fx+' '+fy+'L'+threadX()+' '+(H+2));
     murBox=[W,H];
   }
+  function refit(){murBox=null;if(typeof thKey!=='undefined')thKey='';drawIntro()}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);
+  window.addEventListener('load',function(){setTimeout(refit,60)});
   function setDash(el,v,r){ /* v: 0 nascosto, 1 disegnato, 2 ritirato */
     var o = v<=1 ? (r?-(1-v):(1-v)) : (r?-(v-1):(v-1));
     el.style.strokeDashoffset=String(o);
