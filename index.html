@@ -220,6 +220,18 @@ form.f{display:grid;gap:18px}
 }
 
 /* ---------- al bancone ---------- */
+/* bancone: foto larga con il titolo, quattro colonne sotto */
+.barc .wide{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:2/1;box-shadow:0 30px 60px -28px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.06);background:var(--slate)}
+.barc .wide img{display:block;width:100%;height:100%;object-fit:cover}
+.barc .wide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,12,19,0) 40%,rgba(7,12,19,.88) 100%)}
+.barc .ttl{position:absolute;left:0;right:0;bottom:clamp(16px,3vw,30px);text-align:center;z-index:2;margin:0}
+.barc .lead{text-align:center;margin:28px auto 0;max-width:60ch}
+.barc .cols{display:grid;grid-template-columns:repeat(4,1fr);margin:34px 0 0;border-top:1px solid var(--line)}
+.barc .cols div{padding:22px 16px 0;border-left:1px solid var(--line);text-align:center}
+.barc .cols div:first-child{border-left:0}
+.barc .cols dt{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.2vw,30px);color:var(--text)}
+.barc .cols dd{margin:8px 0 0;color:var(--silver);font-size:15px}
+@media (max-width:760px){.barc .wide{aspect-ratio:4/3}.barc .cols{grid-template-columns:1fr 1fr}.barc .cols div:nth-child(3){border-left:0}.barc .cols div{padding-bottom:22px}}
 .bar-grid{display:grid;gap:clamp(28px,5vw,72px);align-items:center}
 @media (min-width:900px){.bar-grid{grid-template-columns:6fr 5fr}}
 .bar-photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;max-height:74vh;background:var(--slate);box-shadow:0 30px 60px -28px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.06)}
@@ -757,19 +769,19 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     </div>
   </section>
 
-  <section class="block" id="bancone">
-    <div class="wrap bar-grid">
-      <figure class="bar-photo"><img id="barImg" src="img/bancone.webp" loading="lazy" alt="Whisky giapponesi, scozzesi e americani sullo scaffale del bancone di Mòrk's Place"></figure>
-      <div>
-        <h2 class="shine">Al bancone si beve bene</h2>
-        <p class="lead">Solo prodotti di altissima qualità, scelti bottiglia per bottiglia. Drink per l'happy hour, cocktail e distillati da bere lisci, serviti come si deve.</p>
-        <dl class="spirits">
-          <div><dt>Whisky</dt><dd>Scozzesi, irlandesi, americani e giapponesi</dd></div>
-          <div><dt>Gin</dt><dd>London dry e gin artigianali</dd></div>
-          <div><dt>Rum</dt><dd>Rum invecchiati e rhum agricoli</dd></div>
-          <div><dt>Vodka e pisco</dt><dd>Per i cocktail o da bere lisci</dd></div>
-        </dl>
+  <section class="block barc" id="bancone">
+    <div class="wrap">
+      <div class="wide">
+        <picture><source media="(max-width:760px)" srcset="img/bancone-43.webp"><img id="barImg" src="img/bancone-wide.webp" loading="lazy" alt="Whisky giapponesi, scozzesi, irlandesi e americani sullo scaffale del bancone di Mòrk's Place"></picture>
+        <h2 class="shine ttl">Il bancone</h2>
       </div>
+      <p class="lead">Distillati scelti bottiglia per bottiglia, cocktail e drink per l'happy hour, serviti come si deve.</p>
+      <dl class="cols">
+        <div><dt>Whisky</dt><dd>Scozia, Irlanda, Stati Uniti, Giappone</dd></div>
+        <div><dt>Gin</dt><dd>London dry e artigianali</dd></div>
+        <div><dt>Rum</dt><dd>Invecchiati e Rhum agricoli</dd></div>
+        <div><dt>Vodka e Pisco</dt><dd>Per i cocktail o lisci</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -1184,7 +1196,8 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     var top=1e9,bot=-1e9;
     sc.querySelectorAll('*').forEach(function(x){
       if(!x.offsetHeight)return;
-      var own=/^(IMG|INPUT|SELECT|TEXTAREA|BUTTON|IFRAME|VIDEO|CANVAS)$/.test(x.tagName)||x.classList.contains('cf-frame')||x.classList.contains('map')||x.classList.contains('pan');
+      var own=/^(IMG|PICTURE|INPUT|SELECT|TEXTAREA|BUTTON|IFRAME|VIDEO|CANVAS|FIGURE)$/.test(x.tagName)||x.classList.contains('cf-frame')||x.classList.contains('map')||x.classList.contains('pan');
+      if(!own&&x.offsetHeight>40){var cs=getComputedStyle(x);own=cs.backgroundImage!=='none'||(cs.borderTopWidth!=='0px'&&cs.borderTopStyle!=='none'&&cs.borderLeftStyle!=='none')}
       if(!own)for(var c=x.firstChild;c;c=c.nextSibling){if(c.nodeType===3&&c.textContent.trim()){own=true;break}}
       if(!own)return; var y=absTop(x); top=Math.min(top,y); bot=Math.max(bot,y+x.offsetHeight);
     });
