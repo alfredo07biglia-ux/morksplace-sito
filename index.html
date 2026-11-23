@@ -256,9 +256,15 @@ form.f{display:grid;gap:18px}
 .ev-grid{display:grid;gap:clamp(28px,5vw,64px)}
 @media (min-width:900px){.ev-grid{grid-template-columns:5fr 6fr;align-items:start}}
 .poster{position:relative}
-.poster img{display:block;width:100%;height:auto;max-height:86vh;object-fit:contain;border-radius:6px;background:#05090e}
-.poster-empty{aspect-ratio:3/4;max-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:clamp(24px,4vw,44px);
-  border:1px solid rgba(207,212,219,.42);border-radius:50% 50% 6px 6px / 34% 34% 6px 6px;
+.poster img{display:block;width:100%;height:auto;max-height:86vh;object-fit:contain;border-radius:14px;background:#05090e}
+.poster-ev{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid rgba(207,212,219,.3);box-shadow:0 30px 60px -28px rgba(0,0,0,.85)}
+.poster-ev img{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;border-radius:0}
+.poster-ev::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,12,19,0) 45%,rgba(7,12,19,.9) 100%)}
+.poster-ev .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(20px,3.4vw,36px);display:grid;gap:8px}
+.poster-ev small{font-size:15px;color:var(--accent);font-weight:500}
+.poster-ev strong{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,60px);line-height:1;color:var(--text)}
+.poster-empty{aspect-ratio:1;max-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:clamp(24px,4vw,44px);
+  border:1px solid rgba(207,212,219,.42);border-radius:14px;
   background:radial-gradient(90% 60% at 50% 18%,rgba(44,66,96,.75),rgba(18,29,42,.95) 70%)}
 .poster-empty small{font-size:15px;color:var(--accent);font-weight:500}
 .poster-empty strong{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.8vw,50px);line-height:1.02}
@@ -888,7 +894,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <div>
         <h2>Il prossimo evento</h2>
         <p class="ev-date" id="evDate">Venerdì, dalle 20:30</p>
-        <p class="lead">Musica dal vivo un venerdì al mese: la data qui sopra è indicativa, quella confermata la trovi sul canale WhatsApp. Ingresso con la tessera ARCI.</p>
+        <p class="lead" id="evLead">Musica dal vivo un venerdì al mese: la data qui sopra è indicativa, quella confermata la trovi sul canale WhatsApp. Ingresso con la tessera ARCI.</p>
         <div class="card-note ev-note">
           <strong>Come si prenota il posto al concerto</strong>
           <p>Lo comunichiamo a breve. Iscriviti al canale WhatsApp: locandina, programma e novità arrivano prima lì.</p>
@@ -985,7 +991,10 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   function today12(){var n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate(),12)}
   function secondFriday(y,m){var d=new Date(y,m,1,12);return new Date(y,m,1+((5-d.getDay()+7)%7)+7,12)}
   function isEventDay(d){return iso(d)===iso(secondFriday(d.getFullYear(),d.getMonth()))}
-  function nextEvent(){var t=today12(),sf=secondFriday(t.getFullYear(),t.getMonth());return sf>=t?sf:secondFriday(t.getFullYear(),t.getMonth()+1)}
+  /* evento confermato: quando c'è, vale lui; altrimenti la data indicativa (secondo venerdì) */
+  var EVENTO={data:'2026-11-27', artista:'Marco Detto', foto:''};
+  function confirmedEvent(){if(!EVENTO.data)return null;var d=pd(EVENTO.data);return d>=today12()?d:null}
+  function nextEvent(){var c=confirmedEvent();if(c)return c;var t=today12(),sf=secondFriday(t.getFullYear(),t.getMonth());return sf>=t?sf:secondFriday(t.getFullYear(),t.getMonth()+1)}
   function upcomingNights(n){var out=[],d=today12();for(var i=0;i<60&&out.length<n;i++){var w=d.getDay();if(w>=2&&w<=4)out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
   function longDate(d){var s=DAYS[d.getDay()]+' '+d.getDate()+' '+MONTHS_FULL[d.getMonth()];return s.charAt(0).toUpperCase()+s.slice(1)}
   function pd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2],12)}
@@ -1071,14 +1080,17 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       lt.textContent=(ev?'Musica dal vivo '+when:'Apre '+when)+' alle '+ORARIO;
     }
     var ne=nextEvent(), label=longDate(ne);
-    $('#evDate').textContent=label+', dalle '+ORARIO+' (data indicativa)';
-    $('#doveEv').textContent='Data indicativa: '+label.toLowerCase();
+    $('#evDate').textContent=label+', dalle '+ORARIO+(confirmedEvent()?'':' (data indicativa)');
+    if(confirmedEvent())$('#evLead').textContent='Suona '+EVENTO.artista+'. Musica dal vivo al bancone, ingresso con la tessera ARCI.';
+    $('#doveEv').textContent=(confirmedEvent()?'Il prossimo: ':'Data indicativa: ')+label.toLowerCase()+(confirmedEvent()?' con '+EVENTO.artista:'');
     var po=mem.poster&&mem.poster.date===iso(ne)?mem.poster:null, box=$('#poster');
-    var key=po?po.img:'vuoto:'+label;
+    var ce=confirmedEvent(), key=po?po.img:(ce?'ev:'+EVENTO.artista+EVENTO.foto:'vuoto:'+label);
     if(box.getAttribute('data-k')!==key){
       box.setAttribute('data-k',key);
       box.innerHTML = po
         ? '<img src="'+po.img+'" alt="Locandina dell\'evento di '+esc(label.toLowerCase())+'">'
+        : ce&&EVENTO.foto ? '<div class="poster-ev"><img src="'+EVENTO.foto+'" alt="'+esc(EVENTO.artista)+'"><div class="cap"><small>'+esc(label)+', dalle '+ORARIO+'</small><strong>'+esc(EVENTO.artista)+'</strong></div></div>'
+        : ce ? '<div class="poster-empty"><small>'+esc(label)+', dalle '+ORARIO+'</small><strong>'+esc(EVENTO.artista)+'</strong><p>Musica dal vivo al Mòrk\'s Place. Ingresso con la tessera ARCI.</p></div>'
         : '<div class="poster-empty"><small>'+esc(label)+'</small><strong>Programma in arrivo</strong><p>Chi suona lo annunciamo sul canale WhatsApp, insieme alla locandina.</p></div>';
     }
     if(!wDate.options.length){
