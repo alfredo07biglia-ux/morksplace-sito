@@ -275,7 +275,7 @@ form.f{display:grid;gap:18px}
 .fact span{display:block;margin-top:8px;color:var(--silver);font-size:15px;max-width:26ch}
 
 /* ---------- pannelli verticali ---------- */
-.rail{position:relative}
+.rail{position:relative;z-index:46} /* i pannelli stanno sopra il filo: il filo ci passa dietro */
 .rail .pin{background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:84px 0 0}
 .rail h2{width:min(1180px,100% - var(--gutter)*2);margin:0 auto clamp(18px,3vh,30px)}
 .track{display:grid;grid-auto-flow:column;grid-auto-columns:78vw;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 6px;scrollbar-width:none}
