@@ -100,6 +100,8 @@ body.owner .top-cta{display:none}
 .card-note{margin-top:26px;padding:18px 20px;border-radius:8px;border:1px solid var(--line);background:rgba(34,52,74,.5)}
 .card-note strong{font-weight:600;color:var(--text)}
 .card-note p{color:var(--silver);font-size:15px;margin-top:6px}
+.tes-f{margin-top:18px;gap:16px}
+.tes-f .btn{justify-self:start}
 form.f{display:grid;gap:18px}
 .fld{display:grid;gap:7px}
 .fld label,.fld legend{font-size:14px;color:var(--silver);font-weight:500}
@@ -771,7 +773,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       <div class="track" id="track">
         <a class="pan" href="#prenota"><img src="img/tavolo.webp" alt="" style="object-position:50% 60%" loading="lazy"><span class="tx"><small>Martedì, mercoledì e giovedì</small><b>Prenota un tavolo</b></span></a>
         <a class="pan" href="#evento"><img src="img/pianoforte.webp" alt="" style="object-position:50% 38%" loading="lazy"><span class="tx"><small>Un venerdì al mese</small><b>Il prossimo evento</b></span></a>
-        <a class="pan" href="#tessera"><img src="img/murale.webp" alt="" style="object-position:50% 50%" loading="lazy"><span class="tx"><small>Lun · Mer · Ven, 21:00–22:30</small><b>La tessera ARCI</b></span></a>
+        <a class="pan" href="#tessera"><img src="img/murale.webp" alt="" style="object-position:50% 50%" loading="lazy"><span class="tx"><small>Su appuntamento</small><b>La tessera ARCI</b></span></a>
         <a class="pan" href="#dove"><img src="img/sala.webp" alt="" style="object-position:58% 50%" loading="lazy"><span class="tx"><small>Via Crova 11</small><b>Dove siamo</b></span></a>
       </div>
     </div>
@@ -847,7 +849,16 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
         <p style="margin-top:14px;color:var(--silver);font-size:15px">Per il venerdì con musica dal vivo trovi tutto nella sezione <a href="#evento" style="color:var(--text);text-underline-offset:4px">il prossimo evento</a>.</p>
         <div class="card-note" id="tessera">
           <strong>Non hai la tessera?</strong>
-          <p>Mòrk's Place è un circolo ARCI: si entra con la tessera, e il numero lo controlliamo all'ingresso. I tesseramenti si fanno il <strong style="color:var(--text);font-weight:600">lunedì, mercoledì e venerdì dalle 21:00 alle 22:30</strong>, non durante le serate al bancone. Novità e cambi di data li trovi sul <a href="#canale" class="js-canale-link" target="_blank" rel="noopener" style="color:var(--text);text-underline-offset:4px">canale WhatsApp ufficiale</a>.</p>
+          <p>Mòrk's Place è un circolo ARCI: si entra con la tessera, e il numero lo controlliamo all'ingresso. I tesseramenti si fanno <strong style="color:var(--text);font-weight:600">su appuntamento</strong>: lasciaci il nome qui sotto e ti scriviamo su WhatsApp per fissarlo.</p>
+          <form class="f tes-f" id="tesForm" novalidate>
+            <div class="two">
+              <div class="fld"><label for="tName">Nome e cognome</label><input id="tName" autocomplete="name" placeholder="Nome e cognome" required aria-required="true"></div>
+              <div class="fld"><label for="tNum">Quante tessere</label><select id="tNum"><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+            </div>
+            <div class="fld"><label for="tWhen">Quando ti è più comodo</label><select id="tWhen"><option>Quando volete voi</option><option>Lunedì</option><option>Martedì</option><option>Mercoledì</option><option>Giovedì</option><option>Venerdì</option><option>Sabato</option><option>Domenica</option></select></div>
+            <p class="f-err" id="tErr" role="alert" hidden></p>
+            <a class="btn metal wa" id="tBtn" href="#tessera" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.08.9.9-3-.2-.31A8.2 8.2 0 1 1 12.04 20.1Zm4.5-6.15c-.25-.12-1.46-.72-1.69-.8-.22-.09-.39-.12-.55.12-.16.25-.63.8-.78.96-.14.17-.29.18-.54.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25 0-.38.1-.5.12-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.17 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35 1 2.52c.12.17 1.71 2.6 4.15 3.65.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.17-.47-.29Z"/></svg><span class="lm-label">Chiedi la tessera</span></a>
+          </form>
         </div>
       </div>
       <div>
@@ -915,7 +926,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
           <dt>Musica dal vivo</dt><dd>Un venerdì al mese<br><span id="doveEv" style="color:var(--silver-dim);font-size:15px"></span></dd>
           <dt>Al bancone</dt><dd>Drink per l'happy hour</dd>
           <dt>Ingresso</dt><dd>Circolo ARCI, con tessera</dd>
-          <dt>Tesseramenti</dt><dd>Lunedì, mercoledì e venerdì<br><span style="color:var(--silver-dim);font-size:15px">dalle 21:00 alle 22:30</span></dd>
+          <dt>Tesseramenti</dt><dd>Su appuntamento<br><a href="#tessera" style="color:var(--silver-dim);font-size:15px;text-underline-offset:4px">Chiedi la tessera su WhatsApp</a></dd>
           <p style="margin-top:26px"><a class="btn metal" href="https://www.google.com/maps/dir/?api=1&destination=Via+Crova+11+14049+Nizza+Monferrato" rel="noopener" target="_blank"><span class="lm-label">Apri le indicazioni</span></a></p>
         </dl>
         <div class="map" id="map"><div class="map-off"><p>La mappa è fornita da Google. Caricandola, Google riceve il tuo indirizzo IP e può impostare cookie suoi. <a href="privacy.html#cookie">Dettagli</a></p><button type="button" class="btn metal" id="mapBtn"><span class="lm-label">Mostra la mappa</span></button></div></div>
@@ -1024,6 +1035,29 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   });
   [wDate,wPeople,wName,wCard].forEach(function(el){el.addEventListener('input',syncWa);el.addEventListener('change',syncWa)});
   $('#waForm').addEventListener('submit',function(e){e.preventDefault()});
+
+  /* ---------- richiesta tessera: apre un messaggio WhatsApp già scritto ---------- */
+  var tName=$('#tName'), tNum=$('#tNum'), tWhen=$('#tWhen'), tBtn=$('#tBtn'), tErr=$('#tErr'), tTouched=false;
+  function tesMsg(){
+    var n=+tNum.value;
+    return 'Ciao! Vorrei fare '+(n>1?n+' tessere':'la tessera')+" ARCI di Mòrk's Place.\n"+
+      'Nome: '+tName.value.trim()+'\n'+
+      'Quando mi è comodo: '+tWhen.value.toLowerCase()+'\n'+
+      'Possiamo fissare un appuntamento?';
+  }
+  function tesOk(){return tName.value.trim().split(/\s+/).filter(Boolean).length>=2}
+  function syncTes(){
+    var ok=tesOk();
+    if(ok){tBtn.removeAttribute('aria-disabled');tBtn.classList.remove('is-off');tBtn.setAttribute('target','_blank');
+      tBtn.href=hasWa?'https://wa.me/'+waNumber()+'?text='+encodeURIComponent(tesMsg()):'tel:'+TEL_LOCALE}
+    else{tBtn.href='#tessera';tBtn.removeAttribute('target');tBtn.setAttribute('aria-disabled','true');tBtn.classList.add('is-off')}
+    if(tTouched&&!ok){tName.setAttribute('aria-invalid','true');tErr.hidden=false;tErr.textContent='Scrivi nome e cognome per chiedere la tessera.'}
+    else{tName.removeAttribute('aria-invalid');tErr.hidden=true}
+  }
+  tBtn.addEventListener('click',function(e){if(tesOk())return;e.preventDefault();tTouched=true;syncTes();tName.focus()});
+  [tName,tNum,tWhen].forEach(function(el){el.addEventListener('input',syncTes);el.addEventListener('change',syncTes)});
+  $('#tesForm').addEventListener('submit',function(e){e.preventDefault()});
+  syncTes();
 
   /* ---------- render ---------- */
   function renderGuest(){
