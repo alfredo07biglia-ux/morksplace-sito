@@ -1,0 +1,1328 @@
+[
+ {
+  "device": "iPhone SE",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Tempo di caricamento (0.6s in locale)",
+  "ok": true,
+  "detail": "0.6s"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 12}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 375, 'cw': 375}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 375, 'cw': 375}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8997188378631678, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 375, 'cw': 375}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 80, 'p50': 16.69999999999709, 'p95': 33.30000000000291, 'max': 33.400000000001455}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.9, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 667, 'cw': 667}, 'murale': [291.2916259765625, 355.0683288574219, 667]}"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone SE",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Tempo di caricamento (0.4s in locale)",
+  "ok": true,
+  "detail": "0.4s"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 23}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 393, 'cw': 393}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 393, 'cw': 393}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8998532648569333, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 393, 'cw': 393}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Fluidità hero (p95 34 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 61, 'p50': 16.700000000004366, 'p95': 33.5, 'max': 50}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.9205087440381559, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.89107, 'sx': 0, 'sw': 852, 'cw': 852}, 'murale': [383.7916259765625, 447.5683288574219, 852]}"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Tempo di caricamento (0.9s in locale)",
+  "ok": true,
+  "detail": "0.9s"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 56}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 430, 'cw': 430}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 430, 'cw': 430}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8997317236753857, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 430, 'cw': 430}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Fluidità hero (p95 50 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 50, 'p50': 33.30000000000291, 'p95': 50, 'max': 50.099999999998545}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.936046511627907, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.703869, 'sx': 0, 'sw': 932, 'cw': 932}, 'murale': [423.7916259765625, 487.5683288574219, 932]}"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPhone 14 Pro Max",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Tempo di caricamento (0.5s in locale)",
+  "ok": true,
+  "detail": "0.5s"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 40}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 412, 'cw': 412}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 412, 'cw': 412}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.899931693989071, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 412, 'cw': 412}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 54, 'p50': 33.30000000000291, 'p95': 33.400000000001455, 'max': 50}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.9597875569044007, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.355062, 'sx': 0, 'sw': 915, 'cw': 915}, 'murale': [415.2916259765625, 479.0683288574219, 915]}"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Android (Pixel 7)",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Tempo di caricamento (0.4s in locale)",
+  "ok": true,
+  "detail": "0.4s"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 424}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 852, 'cw': 852}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 852, 'cw': 852}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8998410174880763, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 852, 'cw': 852}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 59, 'p50': 33.19999999999709, 'p95': 33.400000000001455, 'max': 50.099999999998545}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.8998532648569333, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 393, 'cw': 393}, 'murale': [47.13399887084961, 272.72948837280273, 393]}"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Telefono orizzontale",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Tempo di caricamento (0.6s in locale)",
+  "ok": true,
+  "detail": "0.6s"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 399}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 820, 'cw': 820}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 820, 'cw': 820}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8998940677966102, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 820, 'cw': 820}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Fluidità hero (p95 83 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 26, 'p50': 50, 'p95': 83.30000000000291, 'max': 83.40000000000146}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.8997713414634146, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1180, 'cw': 1180}, 'murale': [318.576416015625, 728.4157104492188, 1180]}"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad verticale",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Tempo di caricamento (0.5s in locale)",
+  "ok": true,
+  "detail": "0.5s"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 653}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1180, 'cw': 1180}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1180, 'cw': 1180}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8997713414634146, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1180, 'cw': 1180}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Fluidità hero (p95 117 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 28, 'p50': 50, 'p95': 116.69999999999709, 'max': 116.70000000000437}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.8998940677966102, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 820, 'cw': 820}, 'murale': [98.268798828125, 569.014404296875, 820]}"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "iPad orizzontale",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Tempo di caricamento (0.5s in locale)",
+  "ok": true,
+  "detail": "0.5s"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 735}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1280, 'cw': 1280}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1280, 'cw': 1280}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8997395833333334, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1280, 'cw': 1280}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Fluidità hero (p95 100 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 27, 'p50': 50, 'p95': 100, 'max': 100}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.89990234375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 720, 'cw': 720}, 'murale': [86.28480529785156, 499.62245178222656, 720]}"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Portatile 13\"",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "Desktop",
+  "test": "Tempo di caricamento (0.4s in locale)",
+  "ok": true,
+  "detail": "0.4s"
+ },
+ {
+  "device": "Desktop",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 895}"
+ },
+ {
+  "device": "Desktop",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1440, 'cw': 1440}"
+ },
+ {
+  "device": "Desktop",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1440, 'cw': 1440}"
+ },
+ {
+  "device": "Desktop",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.9, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1440, 'cw': 1440}"
+ },
+ {
+  "device": "Desktop",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "Desktop",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "Desktop",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "Desktop",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "Desktop",
+  "test": "Fluidità hero (p95 133 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 20, 'p50': 83.19999999999709, 'p95': 133.40000000000146, 'max': 133.40000000000146}"
+ },
+ {
+  "device": "Desktop",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.8999565972222222, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 900, 'cw': 900}, 'murale': [107.85599517822266, 624.5279312133789, 900]}"
+ },
+ {
+  "device": "Desktop",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Desktop",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "Full HD",
+  "test": "Tempo di caricamento (0.5s in locale)",
+  "ok": true,
+  "detail": "0.5s"
+ },
+ {
+  "device": "Full HD",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 1375}"
+ },
+ {
+  "device": "Full HD",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1920, 'cw': 1920}"
+ },
+ {
+  "device": "Full HD",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 1920, 'cw': 1920}"
+ },
+ {
+  "device": "Full HD",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8998842592592593, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1920, 'cw': 1920}"
+ },
+ {
+  "device": "Full HD",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "Full HD",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "Full HD",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "Full HD",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "Full HD",
+  "test": "Fluidità hero (p95 217 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 12, 'p50': 116.69999999999709, 'p95': 216.60000000000582, 'max': 216.60000000000582}"
+ },
+ {
+  "device": "Full HD",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.89990234375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1080, 'cw': 1080}, 'murale': [129.4272003173828, 749.4336090087891, 1080]}"
+ },
+ {
+  "device": "Full HD",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Full HD",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Caricamento senza errori",
+  "ok": true,
+  "detail": "errori JS [] | richieste fallite [] | immagini rotte []"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Tempo di caricamento (0.4s in locale)",
+  "ok": true,
+  "detail": "0.4s"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
+  "ok": true,
+  "detail": "{'overlap': False, 'gap': 2015}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Hero: logo → murale disegnato → completo con \"Benvenuti\"",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Hero: la striscia non tocca \"Benvenuti\" e i pulsanti",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Filo: non passa sopra nessuna scritta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Nessun testo tagliato o fuori schermo",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "La pagina non si allarga mai di lato",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Scroll violento su e giù: l'hero torna pulito",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 2560, 'cw': 2560}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "\"Torna su\" dal fondo: hero intatto",
+  "ok": true,
+  "detail": "{'p': 0, 'drawn': 0, 'total': 89, 'logo': 1, 'lead': 1, 'sx': 0, 'sw': 2560, 'cw': 2560}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "\"Torna su\" poi di nuovo giù: murale al suo posto",
+  "ok": true,
+  "detail": "{'p': 0.8998842592592593, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 2560, 'cw': 2560}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Pulsanti interni portano alla sezione giusta",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
+  "ok": true,
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Caroselli: freccia avanti, foto ingrandita, chiusura",
+  "ok": true,
+  "detail": "{'prima': '01 / 06', 'dopo': '02 / 06', 'aperta': True, 'chiusa': True}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Mappa: si carica solo dopo il tocco",
+  "ok": true,
+  "detail": "{'prima': 0, 'dopo': 1}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "In fondo il filo raggiunge il logo e lo accende",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Fluidità hero (p95 200 ms per fotogramma)",
+  "ok": false,
+  "detail": "{'n': 10, 'p50': 166.70000000001164, 'p95': 200, 'max': 200}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Rotazione schermo a metà hero: murale ricalcolato",
+  "ok": true,
+  "detail": "{'stato': {'p': 0.89990234375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1080, 'cw': 1080}, 'murale': [129.4272003173828, 749.4336090087891, 1080]}"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Rotazione: il filo resta fuori dalle scritte",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Ultrawide",
+  "test": "Nessun errore JS durante tutte le prove",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "device": "Movimento ridotto (accessibilità)",
+  "test": "Pagina usabile senza animazioni",
+  "ok": true,
+  "detail": "{'errori': [], 'testi': ['0', '0', '1']}"
+ }
+]
