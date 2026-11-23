@@ -174,26 +174,33 @@ form.f{display:grid;gap:18px}
 .mark{transition:none;will-change:opacity}
 .ch{position:absolute;z-index:2;opacity:0;will-change:opacity,transform}
 .ch h1{font-size:clamp(42px,6.4vw,92px);max-width:11ch}
+.ch-1 h1{max-width:none;font-size:clamp(38px,5vw,72px);margin-inline:auto}
 .ch p{margin-top:12px;color:var(--silver);font-size:clamp(16px,1.5vw,19px)}
 .ch .big{font-family:var(--serif);font-size:clamp(30px,3.6vw,50px);line-height:1.05;color:var(--text);margin:0}
-.ch-1{left:var(--gutter);bottom:15vh;max-width:min(640px,86vw)}
-.ch-2{right:var(--gutter);top:34vh;max-width:min(400px,86vw);text-align:right}
+.ch-1{left:50%;bottom:13vh;width:min(980px,92vw);text-align:center}
+.ch-2{left:50%;bottom:13vh;width:min(560px,90vw);text-align:center}
 .ch-3{left:50%;bottom:11vh;width:min(820px,92vw);text-align:center}
 .ch-3 h2{font-size:clamp(40px,6vw,86px)}
 .ch-3 .cta{display:flex;flex-wrap:wrap;gap:12px 14px;justify-content:center;align-items:center;margin-top:24px}
 /* murale disegnato a linea: nasce dalla linea di "Scorri per entrare", si completa, poi si scioglie nel filo del sito */
 .mur-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:visible}
-.mur-svg path{fill:none;stroke:#e4e8f0;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 5px rgba(143,178,255,.45))}
+.mur-svg path{fill:none;stroke:#e9edf4;stroke-width:var(--msw,3.2);stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 5px rgba(143,178,255,.45))}
 .mur-svg path[data-r="1"]{stroke-dashoffset:-1}
-#murLead{opacity:.55}
+#murLead{stroke-width:2.6}
+@media (max-width:759px){.mur-svg{--msw:2.4}}
+.finale{position:relative;display:grid;place-items:center;padding:clamp(90px,16vh,160px) var(--gutter) clamp(70px,12vh,120px);background:var(--bg)}
+.finale img{width:min(420px,72vw);height:auto;opacity:.28;filter:grayscale(.2);transition:opacity .9s ease,filter .9s ease}
+.finale::before{content:"";position:absolute;left:50%;top:50%;width:min(620px,96vw);height:240px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(58,107,255,.38),transparent);opacity:0;transition:opacity .9s ease;pointer-events:none}
+.finale.lit img{opacity:1;filter:drop-shadow(0 0 18px rgba(143,178,255,.45))}
+.finale.lit::before{opacity:1}
 .thread{position:absolute;left:0;right:0;pointer-events:none;z-index:45}
 .thread svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.thread path{fill:none;stroke:#d6dcea;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:.75;filter:drop-shadow(0 0 4px rgba(143,178,255,.45))}
+.thread path{fill:none;stroke:#e1e6f0;stroke-width:2.6;stroke-linecap:round;stroke-dasharray:0 99999;opacity:.9;filter:drop-shadow(0 0 4px rgba(143,178,255,.45))}
 @media (prefers-reduced-motion:reduce){.mur-svg path{stroke-dashoffset:0!important}.thread{display:none}}
 .cue{position:absolute;left:50%;bottom:22px;z-index:2;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;color:var(--silver)}
 .cue i{display:block;width:1px;height:34px;background:linear-gradient(var(--silver),transparent)}
 @media (max-width:760px){
-  .ch-2{left:var(--gutter);right:auto;top:auto;bottom:15vh;text-align:left}
+  .ch-2{bottom:12vh}
   .ch-3{bottom:9vh}
 }
 
@@ -893,6 +900,8 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     </div>
   </section>
 
+  <section class="finale" id="finale" aria-label="Mòrk's Place"><img id="finaleLogo" src="img/logo.webp" alt="Mòrk's Place Jazz &amp; Blues House" loading="lazy" decoding="async"></section>
+
   <footer>
     <div class="wrap">
       <div class="foot">
@@ -1036,7 +1045,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     chLogo.style.opacity=String(lo);
     chLogo.style.transform='scale('+(1+(1-lo)*.35)+')';
     mark.style.opacity=String(reduce?1:clamp((p-.12)/.14,0,1));
-    show(ch1,win(p,.14,.26,.42,.52)); show(ch2,win(p,.5,.6,.72,.82)); show(ch3,win(p,.86,.94,2,3),true);
+    show(ch1,win(p,.2,.3,.42,.5),true); show(ch2,win(p,.52,.6,.72,.8),true); show(ch3,win(p,.86,.94,2,3),true);
     cue.style.opacity=String(clamp(1-p*14,0,1));
     drawMural(p);
   }
@@ -1045,12 +1054,32 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   var murSvg=$('#murSvg'), murG=$('#murG'), murLead=$('#murLead'), murP=[].slice.call(murG.querySelectorAll('path'));
   var FX=666.0, FY=763.0, murBox=null;
   function sstep(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x)}
+  /* riquadro che contiene davvero le scritte e i pulsanti di un blocco (non tutta la sua larghezza) */
+  function threadX(){var w=document.querySelector('.wrap');return Math.max(7,(w?w.getBoundingClientRect().left:28)/2)}
+  function textBox(el){
+    var l=1e9,t=1e9,r=-1e9,b=-1e9,any=false, keep=el.style.opacity; el.style.opacity='0.001';
+    el.querySelectorAll('h1,h2,h3,p,a,button,.live').forEach(function(x){
+      var rg=document.createRange(); rg.selectNodeContents(x); var rs=[].slice.call(rg.getClientRects());
+      if(x.tagName==='A'||x.tagName==='BUTTON'||x.classList.contains('live'))rs=[x.getBoundingClientRect()];
+      rs.forEach(function(q){if(q.width<1||q.height<1)return;any=true;l=Math.min(l,q.left);t=Math.min(t,q.top);r=Math.max(r,q.right);b=Math.max(b,q.bottom)});
+    });
+    el.style.opacity=keep; return any?{l:l,t:t,r:r,b:b}:null;
+  }
   function fitMural(){
-    var W=window.innerWidth,H=window.innerHeight, w=Math.min(W*.94,1500,H*.42*1500/844), sc=w/1500, h=844*sc;
-    var x=(W-w)/2, y=Math.max(64,H*.31-h/2);
+    var W=window.innerWidth,H=window.innerHeight, zoneT=H*.1, zoneH=H*.5;
+    var w=Math.min(W*.96,1500,zoneH*1500/844), sc=w/1500, h=844*sc;
+    var x=(W-w)/2, y=zoneT+(zoneH-h)/2;
     murG.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+') scale('+sc.toFixed(4)+')');
-    var fx=x+FX*sc, fy=y+FY*sc, by=H-22;
-    murLead.setAttribute('d','M'+W/2+' '+H+'L'+W/2+' '+by+'C'+W/2+' '+(by-(by-fy)*.5)+' '+fx+' '+(fy+(by-fy)*.5)+' '+fx+' '+fy);
+    var fx=x+FX*sc, fy=y+FY*sc;
+    /* la striscia scende dal murale e gira intorno al blocco "Benvenuti" senza toccare le scritte, poi arriva al centro in basso */
+    var tr=ch3.style.transform; ch3.style.transform='translateX(-50%)'; var bx=textBox(ch3); ch3.style.transform=tr; var m=16, side, sx;
+    if(bx){
+      var roomL=bx.l, roomR=W-bx.r; side=roomR>=roomL?1:0;
+      sx=side?Math.min(W-6,bx.r+Math.max(m,roomR*.45)):Math.max(6,bx.l-Math.max(m,roomL*.45));
+      var t=bx.t-m, b=Math.min(H-8,bx.b+m), by=Math.min(H-4,b+(H-b)*.5);
+      var ex=threadX();
+      murLead.setAttribute('d','M'+fx+' '+fy+'C'+fx+' '+(fy+(t-fy)*.6)+' '+sx+' '+(t-(t-fy)*.5)+' '+sx+' '+t+'L'+sx+' '+b+'C'+sx+' '+by+' '+ex+' '+b+' '+ex+' '+(H+2));
+    } else murLead.setAttribute('d','M'+fx+' '+fy+'L'+threadX()+' '+(H+2));
     murBox=[W,H];
   }
   function setDash(el,v,r){ /* v: 0 nascosto, 1 disegnato, 2 ritirato */
@@ -1059,36 +1088,59 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   }
   function drawMural(p){
     if(!murBox||murBox[0]!==window.innerWidth||murBox[1]!==window.innerHeight)fitMural();
-    if(reduce){murP.forEach(function(el){el.style.strokeDashoffset='0'});murLead.style.strokeDashoffset='0';return}
+    if(reduce){murP.forEach(function(el){el.style.strokeDashoffset='0'});murLead.style.strokeDashoffset='1';return}
     var n=murP.length;
-    /* disegno: linea guida .02-.1, murale .1-.84 un tratto dopo l'altro; smontaggio .9-1 al contrario, verso la linea in basso */
-    var lead=sstep(.02,.1,p), undo=clamp((p-.9)/.1,0,1);
+    /* .14-.84 il murale si disegna un tratto dopo l'altro; completo con "Benvenuti";
+       .9-1 si smonta al contrario e intanto nasce la striscia che scende e diventa il filo del sito */
+    var undo=clamp((p-.9)/.09,0,1);
     for(var i=0;i<n;i++){
-      var a=.1+.7*i/n, b=a+.7/n*2.2, v=sstep(a,b,p);
-      var ra=1-(i+1)/n, rb=ra+1.6/n, u=clamp((undo-ra)/(rb-ra),0,1);
+      var a=.14+.66*i/n, b=a+.66/n*2.4, v=sstep(a,b,p);
+      var ra=1-(i+1)/n, rb=ra+1.8/n, u=clamp((undo-ra)/(rb-ra),0,1);
       setDash(murP[i],u>0?1+u:v,murP[i].getAttribute('data-r')==='1');
     }
-    var lu=clamp((undo-.9)/.1,0,1);
-    murLead.style.strokeDashoffset=String(lu>0?lu:1-lead); /* la linea guida si ritira verso il basso, dove parte il filo */
+    murLead.style.strokeDashoffset=String(1-sstep(.9,1,p));
   }
+
   /* ---------- filo conduttore: parte sotto l'ingresso, al centro, e scende tra le sezioni passando di lato e in mezzo ---------- */
   var thread=$('#thread'), thP=$('#threadP'), guest=$('#guest'), thTop=0, thH=1, thKey='', thLen=1, thTab=[];
-  function buildThread(){
-    var secs=[].slice.call(guest.querySelectorAll(':scope > section')).filter(function(x){return x.id!=='ingresso'});
-    var W=guest.offsetWidth, g=Math.max(8,($('.wrap')?$('.wrap').getBoundingClientRect().left:28)/2);
-    thTop=intro.offsetTop+intro.offsetHeight; var end=guest.offsetHeight; thH=end-thTop;
-    thread.style.top=thTop+'px'; thread.style.height=thH+'px';
-    var d='M'+W/2+' 0', x=W/2, y=0, side=0;
-    secs.forEach(function(sc,k){
-      var top=sc.offsetTop-thTop, bot=top+sc.offsetHeight, nx=side?W-g:g;
-      /* attraversa al centro nello spazio tra due sezioni, poi scende lungo il bordo */
-      var cy=Math.max(y+40,top+Math.min(90,sc.offsetHeight*.15));
-      d+='C'+x+' '+(y+(cy-y)*.6)+' '+nx+' '+(cy-(cy-y)*.4)+' '+nx+' '+cy;
-      var my=Math.max(cy+20,bot-60);
-      d+='C'+(nx+(side?-10:10))+' '+(cy+(my-cy)*.33)+' '+(nx+(side?10:-10))+' '+(cy+(my-cy)*.66)+' '+nx+' '+my;
-      x=nx;y=my;side=1-side;
+  function absTop(el){var y=0;while(el&&el!==guest){y+=el.offsetTop;el=el.offsetParent}return y}
+  /* inizio e fine del contenuto visibile di una sezione (titoli, testi, foto, pulsanti), nella posizione normale della pagina */
+  function contentSpan(sc){
+    var top=1e9,bot=-1e9;
+    sc.querySelectorAll('*').forEach(function(x){
+      if(!x.offsetHeight)return;
+      var own=/^(IMG|INPUT|SELECT|TEXTAREA|BUTTON|IFRAME|VIDEO|CANVAS)$/.test(x.tagName)||x.classList.contains('cf-frame')||x.classList.contains('map')||x.classList.contains('pan');
+      if(!own)for(var c=x.firstChild;c;c=c.nextSibling){if(c.nodeType===3&&c.textContent.trim()){own=true;break}}
+      if(!own)return; var y=absTop(x); top=Math.min(top,y); bot=Math.max(bot,y+x.offsetHeight);
     });
-    d+='C'+x+' '+(y+(thH-y)*.5)+' '+W/2+' '+(thH-40)+' '+W/2+' '+thH;
+    var st=absTop(sc), sb=st+sc.offsetHeight;
+    if(sc.querySelector('.pin'))bot=sb; /* sezione con contenuto fisso durante lo scroll: occupa tutta l'altezza */
+    if(top>bot){top=st;bot=st}
+    return [top,bot,st,sb];
+  }
+  function buildThread(){
+    var secs=[].slice.call(guest.querySelectorAll(':scope > section')).filter(function(x){return x.id!=='ingresso'&&x.id!=='finale'});
+    var W=guest.offsetWidth, wl=$('.wrap')?$('.wrap').getBoundingClientRect().left:28, g=Math.max(7,wl/2);
+    var lg=$('#finaleLogo'); thTop=absTop(intro)+intro.offsetHeight;
+    var end=absTop(lg)-14; thH=end-thTop;
+    thread.style.top=thTop+'px'; thread.style.height=thH+'px';
+    var d='M'+g+' 0', x=g, y=0, side=0, prevBot=0, M=10;
+    function cross(nx,gT,gB){ /* curva tutta dentro lo spazio vuoto [gT,gB] */
+      var a=Math.max(y,gT+M), b=Math.max(a+12,gB-M);
+      if(a>y)d+='L'+x+' '+a;
+      d+='C'+x+' '+(a+(b-a)*.55)+' '+nx+' '+(b-(b-a)*.55)+' '+nx+' '+b; x=nx; y=b;
+    }
+    secs.forEach(function(sc,k){
+      var c=contentSpan(sc), cT=c[0]-thTop, cB=c[1]-thTop, nx=side?W-g:g;
+      var gT=prevBot, gB=cT;
+      if(gB-gT>=34||k===0)cross(nx,gT,Math.max(gB,gT+34)); else { nx=x; } /* niente spazio: resta dallo stesso lato */
+      d+='L'+x+' '+Math.max(y,cB); y=Math.max(y,cB); prevBot=cB;
+      side=x>W/2?0:1;
+    });
+    /* ultimo tratto: nello spazio sopra il logo finale, fino al logo */
+    var fT=absTop($('#finale'))-thTop;
+    var a=Math.max(y,prevBot+M); if(a>y)d+='L'+x+' '+a;
+    d+='C'+x+' '+(a+(thH-a)*.6)+' '+W/2+' '+(thH-(thH-a)*.6)+' '+W/2+' '+thH;
     thP.setAttribute('d',d); thread.querySelector('svg').setAttribute('viewBox','0 0 '+W+' '+thH);
     /* tabella altezza -> lunghezza, così la punta del filo segue lo scroll anche dove attraversa la pagina */
     thLen=thP.getTotalLength(); thTab=[]; var N=600;
@@ -1102,6 +1154,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     var ty=window.scrollY+window.innerHeight*.8-thTop, L=0;
     for(var k=0;k<thTab.length;k++){if(thTab[k][0]<=ty)L=thTab[k][1];else break}
     thP.style.strokeDashoffset=String(thLen-L);
+    $('#finale').classList.toggle('lit',ty>=thH-2);
   }
 
   /* ---------- pannelli: entrano da destra, uno dopo l'altro ---------- */
