@@ -1146,11 +1146,11 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   /* riquadro che contiene davvero le scritte e i pulsanti di un blocco (non tutta la sua larghezza) */
   function threadX(){var w=document.querySelector('.wrap');return Math.max(7,(w?w.getBoundingClientRect().left:28)/2)}
   function textBox(el){
-    var l=1e9,t=1e9,r=-1e9,b=-1e9,any=false, keep=el.style.opacity; el.style.opacity='0.001';
+    var l=1e9,t=1e9,r=-1e9,b=-1e9,any=false, keep=el.style.opacity, o=murSvg.getBoundingClientRect(); el.style.opacity='0.001';
     el.querySelectorAll('h1,h2,h3,p,a,button,.live').forEach(function(x){
       var rg=document.createRange(); rg.selectNodeContents(x); var rs=[].slice.call(rg.getClientRects());
       if(x.tagName==='A'||x.tagName==='BUTTON'||x.classList.contains('live'))rs=[x.getBoundingClientRect()];
-      rs.forEach(function(q){if(q.width<1||q.height<1)return;any=true;l=Math.min(l,q.left);t=Math.min(t,q.top);r=Math.max(r,q.right);b=Math.max(b,q.bottom)});
+      rs.forEach(function(q){if(q.width<1||q.height<1)return;any=true;l=Math.min(l,q.left-o.left);t=Math.min(t,q.top-o.top);r=Math.max(r,q.right-o.left);b=Math.max(b,q.bottom-o.top)});
     });
     el.style.opacity=keep; return any?{l:l,t:t,r:r,b:b}:null;
   }
@@ -1174,7 +1174,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
       var ex=threadX();
       murLead.setAttribute('d','M'+fx+' '+fy+'C'+fx+' '+(fy+(t-fy)*.6)+' '+sx+' '+(t-(t-fy)*.5)+' '+sx+' '+t+'L'+sx+' '+b+'C'+sx+' '+by+' '+ex+' '+b+' '+ex+' '+(H+2));
     } else murLead.setAttribute('d','M'+fx+' '+fy+'L'+threadX()+' '+(H+2));
-    murBox=[W,H];
+    murBox=[W,H,Math.abs(murSvg.getBoundingClientRect().top)<2];
   }
   function refit(){murBox=null;if(typeof thKey!=='undefined')thKey='';drawIntro()}
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);
@@ -1184,7 +1184,8 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     el.style.strokeDashoffset=String(o);
   }
   function drawMural(p){
-    if(!murBox||murBox[0]!==window.innerWidth||murBox[1]!==window.innerHeight)fitMural();
+    var inView=intro.getBoundingClientRect().bottom>0;
+    if(inView&&(!murBox||murBox[0]!==window.innerWidth||murBox[1]!==window.innerHeight||!murBox[2]))fitMural();
     if(reduce){murP.forEach(function(el){el.style.strokeDashoffset='0'});murLead.style.strokeDashoffset='1';return}
     var n=murP.length;
     /* .14-.84 il murale si disegna un tratto dopo l'altro; completo con "Benvenuti";
