@@ -543,7 +543,7 @@ body::before{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none
              radial-gradient(28% 26% at 86% 24%,rgba(207,212,219,.15),transparent 70%),
              radial-gradient(44% 38% at 62% 86%,rgba(38,68,108,.42),transparent 70%),
              radial-gradient(24% 22% at 30% 66%,rgba(150,162,178,.10),transparent 70%);
-  filter:blur(28px);animation:lgDrift 38s ease-in-out infinite alternate}
+  will-change:transform;animation:lgDrift 38s ease-in-out infinite alternate} /* niente blur: le sfumature sono già morbide, e uno sfondo sfocato che si muove pesava molto sui telefoni */
 @keyframes lgDrift{to{transform:translate3d(4%,-3%,0) scale(1.08)}}
 
 /* superfici principali */
