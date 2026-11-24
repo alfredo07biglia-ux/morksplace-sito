@@ -7,15 +7,15 @@
  },
  {
   "device": "iPhone SE",
-  "test": "Tempo di caricamento (0.6s in locale)",
+  "test": "Tempo di caricamento (0.4s in locale)",
   "ok": true,
-  "detail": "0.6s"
+  "detail": "0.4s"
  },
  {
   "device": "iPhone SE",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 12}"
+  "detail": "{'overlap': False, 'gap': 139}"
  },
  {
   "device": "iPhone SE",
@@ -75,7 +75,7 @@
   "device": "iPhone SE",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "iPhone SE",
@@ -97,15 +97,15 @@
  },
  {
   "device": "iPhone SE",
-  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
   "ok": true,
-  "detail": "{'n': 80, 'p50': 16.69999999999709, 'p95': 33.30000000000291, 'max': 33.400000000001455}"
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.700000000004366, 'max': 16.80000000000291}"
  },
  {
   "device": "iPhone SE",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.9, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 667, 'cw': 667}, 'murale': [291.2916259765625, 355.0683288574219, 667]}"
+  "detail": "{'stato': {'p': 0.9, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 667, 'cw': 667}, 'murale': [256.0423889160156, 373.0111999511719, 667]}"
  },
  {
   "device": "iPhone SE",
@@ -127,15 +127,15 @@
  },
  {
   "device": "iPhone 14",
-  "test": "Tempo di caricamento (0.4s in locale)",
+  "test": "Tempo di caricamento (0.3s in locale)",
   "ok": true,
-  "detail": "0.4s"
+  "detail": "0.3s"
  },
  {
   "device": "iPhone 14",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 23}"
+  "detail": "{'overlap': False, 'gap': 155}"
  },
  {
   "device": "iPhone 14",
@@ -195,7 +195,7 @@
   "device": "iPhone 14",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "iPhone 14",
@@ -217,15 +217,15 @@
  },
  {
   "device": "iPhone 14",
-  "test": "Fluidità hero (p95 34 ms per fotogramma)",
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
   "ok": true,
-  "detail": "{'n': 61, 'p50': 16.700000000004366, 'p95': 33.5, 'max': 50}"
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.700000000004366, 'max': 16.80000000000291}"
  },
  {
   "device": "iPhone 14",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.9205087440381559, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.89107, 'sx': 0, 'sw': 852, 'cw': 852}, 'murale': [383.7916259765625, 447.5683288574219, 852]}"
+  "detail": "{'stato': {'p': 0.8998410174880763, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 852, 'cw': 852}, 'murale': [351.3935852050781, 464.0567932128906, 852]}"
  },
  {
   "device": "iPhone 14",
@@ -247,15 +247,15 @@
  },
  {
   "device": "iPhone 14 Pro Max",
-  "test": "Tempo di caricamento (0.9s in locale)",
+  "test": "Tempo di caricamento (0.3s in locale)",
   "ok": true,
-  "detail": "0.9s"
+  "detail": "0.3s"
  },
  {
   "device": "iPhone 14 Pro Max",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 56}"
+  "detail": "{'overlap': False, 'gap': 188}"
  },
  {
   "device": "iPhone 14 Pro Max",
@@ -315,7 +315,7 @@
   "device": "iPhone 14 Pro Max",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "iPhone 14 Pro Max",
@@ -337,15 +337,15 @@
  },
  {
   "device": "iPhone 14 Pro Max",
-  "test": "Fluidità hero (p95 50 ms per fotogramma)",
-  "ok": false,
-  "detail": "{'n': 50, 'p50': 33.30000000000291, 'p95': 50, 'max': 50.099999999998545}"
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.700000000004366, 'max': 16.80000000000291}"
  },
  {
   "device": "iPhone 14 Pro Max",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.936046511627907, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.703869, 'sx': 0, 'sw': 932, 'cw': 932}, 'murale': [423.7916259765625, 487.5683288574219, 932]}"
+  "detail": "{'stato': {'p': 0.8997093023255814, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 932, 'cw': 932}, 'murale': [371.7572021484375, 514.111083984375, 932]}"
  },
  {
   "device": "iPhone 14 Pro Max",
@@ -367,15 +367,15 @@
  },
  {
   "device": "Android (Pixel 7)",
-  "test": "Tempo di caricamento (0.5s in locale)",
+  "test": "Tempo di caricamento (0.4s in locale)",
   "ok": true,
-  "detail": "0.5s"
+  "detail": "0.4s"
  },
  {
   "device": "Android (Pixel 7)",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 40}"
+  "detail": "{'overlap': False, 'gap': 172}"
  },
  {
   "device": "Android (Pixel 7)",
@@ -435,7 +435,7 @@
   "device": "Android (Pixel 7)",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "Android (Pixel 7)",
@@ -457,15 +457,15 @@
  },
  {
   "device": "Android (Pixel 7)",
-  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
   "ok": true,
-  "detail": "{'n': 54, 'p50': 33.30000000000291, 'p95': 33.400000000001455, 'max': 50}"
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.700000000004366, 'max': 16.80000000000291}"
  },
  {
   "device": "Android (Pixel 7)",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.9597875569044007, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.355062, 'sx': 0, 'sw': 915, 'cw': 915}, 'murale': [415.2916259765625, 479.0683288574219, 915]}"
+  "detail": "{'stato': {'p': 0.8998482549317147, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 915, 'cw': 915}, 'murale': [373.6960144042969, 500.1730041503906, 915]}"
  },
  {
   "device": "Android (Pixel 7)",
@@ -495,7 +495,7 @@
   "device": "Telefono orizzontale",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 424}"
+  "detail": "{'overlap': False, 'gap': 459}"
  },
  {
   "device": "Telefono orizzontale",
@@ -555,7 +555,7 @@
   "device": "Telefono orizzontale",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "Telefono orizzontale",
@@ -577,9 +577,9 @@
  },
  {
   "device": "Telefono orizzontale",
-  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
   "ok": true,
-  "detail": "{'n': 59, 'p50': 33.19999999999709, 'p95': 33.400000000001455, 'max': 50.099999999998545}"
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.700000000004366, 'max': 16.80000000000291}"
  },
  {
   "device": "Telefono orizzontale",
@@ -607,15 +607,15 @@
  },
  {
   "device": "iPad verticale",
-  "test": "Tempo di caricamento (0.6s in locale)",
+  "test": "Tempo di caricamento (0.4s in locale)",
   "ok": true,
-  "detail": "0.6s"
+  "detail": "0.4s"
  },
  {
   "device": "iPad verticale",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 399}"
+  "detail": "{'overlap': False, 'gap': 434}"
  },
  {
   "device": "iPad verticale",
@@ -675,7 +675,7 @@
   "device": "iPad verticale",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "iPad verticale",
@@ -697,15 +697,15 @@
  },
  {
   "device": "iPad verticale",
-  "test": "Fluidità hero (p95 83 ms per fotogramma)",
-  "ok": false,
-  "detail": "{'n': 26, 'p50': 50, 'p95': 83.30000000000291, 'max': 83.40000000000146}"
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.799999999995634, 'max': 33.30000000000291}"
  },
  {
   "device": "iPad verticale",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.8997713414634146, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1180, 'cw': 1180}, 'murale': [318.576416015625, 728.4157104492188, 1180]}"
+  "detail": "{'stato': {'p': 0.8997713414634146, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1180, 'cw': 1180}, 'murale': [301.48480224609375, 737.2474365234375, 1180]}"
  },
  {
   "device": "iPad verticale",
@@ -727,15 +727,15 @@
  },
  {
   "device": "iPad orizzontale",
-  "test": "Tempo di caricamento (0.5s in locale)",
+  "test": "Tempo di caricamento (0.3s in locale)",
   "ok": true,
-  "detail": "0.5s"
+  "detail": "0.3s"
  },
  {
   "device": "iPad orizzontale",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 653}"
+  "detail": "{'overlap': False, 'gap': 689}"
  },
  {
   "device": "iPad orizzontale",
@@ -795,7 +795,7 @@
   "device": "iPad orizzontale",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "iPad orizzontale",
@@ -817,9 +817,9 @@
  },
  {
   "device": "iPad orizzontale",
-  "test": "Fluidità hero (p95 117 ms per fotogramma)",
-  "ok": false,
-  "detail": "{'n': 28, 'p50': 50, 'p95': 116.69999999999709, 'max': 116.70000000000437}"
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 89, 'p50': 16.69999999999709, 'p95': 16.700000000004366, 'max': 33.400000000001455}"
  },
  {
   "device": "iPad orizzontale",
@@ -847,15 +847,15 @@
  },
  {
   "device": "Portatile 13\"",
-  "test": "Tempo di caricamento (0.5s in locale)",
+  "test": "Tempo di caricamento (0.3s in locale)",
   "ok": true,
-  "detail": "0.5s"
+  "detail": "0.3s"
  },
  {
   "device": "Portatile 13\"",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 735}"
+  "detail": "{'overlap': False, 'gap': 770}"
  },
  {
   "device": "Portatile 13\"",
@@ -915,7 +915,7 @@
   "device": "Portatile 13\"",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "Portatile 13\"",
@@ -937,9 +937,9 @@
  },
  {
   "device": "Portatile 13\"",
-  "test": "Fluidità hero (p95 100 ms per fotogramma)",
-  "ok": false,
-  "detail": "{'n': 27, 'p50': 50, 'p95': 100, 'max': 100}"
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 91, 'p50': 16.69999999999709, 'p95': 16.799999999995634, 'max': 16.80000000000291}"
  },
  {
   "device": "Portatile 13\"",
@@ -967,15 +967,15 @@
  },
  {
   "device": "Desktop",
-  "test": "Tempo di caricamento (0.4s in locale)",
+  "test": "Tempo di caricamento (0.5s in locale)",
   "ok": true,
-  "detail": "0.4s"
+  "detail": "0.5s"
  },
  {
   "device": "Desktop",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 895}"
+  "detail": "{'overlap': False, 'gap': 930}"
  },
  {
   "device": "Desktop",
@@ -1035,7 +1035,7 @@
   "device": "Desktop",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "Desktop",
@@ -1057,9 +1057,9 @@
  },
  {
   "device": "Desktop",
-  "test": "Fluidità hero (p95 133 ms per fotogramma)",
-  "ok": false,
-  "detail": "{'n': 20, 'p50': 83.19999999999709, 'p95': 133.40000000000146, 'max': 133.40000000000146}"
+  "test": "Fluidità hero (p95 17 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 88, 'p50': 16.69999999999709, 'p95': 16.799999999995634, 'max': 33.400000000001455}"
  },
  {
   "device": "Desktop",
@@ -1087,15 +1087,15 @@
  },
  {
   "device": "Full HD",
-  "test": "Tempo di caricamento (0.5s in locale)",
+  "test": "Tempo di caricamento (0.4s in locale)",
   "ok": true,
-  "detail": "0.5s"
+  "detail": "0.4s"
  },
  {
   "device": "Full HD",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 1375}"
+  "detail": "{'overlap': False, 'gap': 1410}"
  },
  {
   "device": "Full HD",
@@ -1155,7 +1155,7 @@
   "device": "Full HD",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "Full HD",
@@ -1177,15 +1177,15 @@
  },
  {
   "device": "Full HD",
-  "test": "Fluidità hero (p95 217 ms per fotogramma)",
-  "ok": false,
-  "detail": "{'n': 12, 'p50': 116.69999999999709, 'p95': 216.60000000000582, 'max': 216.60000000000582}"
+  "test": "Fluidità hero (p95 33 ms per fotogramma)",
+  "ok": true,
+  "detail": "{'n': 60, 'p50': 33.20799999999872, 'p95': 33.400000000001455, 'max': 33.400000000001455}"
  },
  {
   "device": "Full HD",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.89990234375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1080, 'cw': 1080}, 'murale': [129.4272003173828, 749.4336090087891, 1080]}"
+  "detail": "{'stato': {'p': 0.9052734375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 0.991951, 'sx': 0, 'sw': 1080, 'cw': 1080}, 'murale': [129.4272003173828, 749.4336090087891, 1080]}"
  },
  {
   "device": "Full HD",
@@ -1207,15 +1207,15 @@
  },
  {
   "device": "Ultrawide",
-  "test": "Tempo di caricamento (0.4s in locale)",
+  "test": "Tempo di caricamento (0.3s in locale)",
   "ok": true,
-  "detail": "0.4s"
+  "detail": "0.3s"
  },
  {
   "device": "Ultrawide",
   "test": "Logo e \"Prenota un tavolo\" non si sovrappongono",
   "ok": true,
-  "detail": "{'overlap': False, 'gap': 2015}"
+  "detail": "{'overlap': False, 'gap': 2050}"
  },
  {
   "device": "Ultrawide",
@@ -1275,7 +1275,7 @@
   "device": "Ultrawide",
   "test": "Prenotazione: vuoto bloccato, compilato apre WhatsApp",
   "ok": true,
-  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': 'https://wa.me/393532248598?text=Ciao!%20Vorrei%20prenotare%2', 'errore_sparito': True}"
+  "detail": "{'errore_mostrato': True, 'link_vuoto': '#prenota', 'link_pieno': \"https://wa.me/393532248598?text=Hi!%20I'd%20like%20to%20book\", 'errore_sparito': True}"
  },
  {
   "device": "Ultrawide",
@@ -1297,15 +1297,15 @@
  },
  {
   "device": "Ultrawide",
-  "test": "Fluidità hero (p95 200 ms per fotogramma)",
+  "test": "Fluidità hero (p95 50 ms per fotogramma)",
   "ok": false,
-  "detail": "{'n': 10, 'p50': 166.70000000001164, 'p95': 200, 'max': 200}"
+  "detail": "{'n': 42, 'p50': 33.39999999999418, 'p95': 50, 'max': 50}"
  },
  {
   "device": "Ultrawide",
   "test": "Rotazione schermo a metà hero: murale ricalcolato",
   "ok": true,
-  "detail": "{'stato': {'p': 0.89990234375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1080, 'cw': 1080}, 'murale': [129.4272003173828, 749.4336090087891, 1080]}"
+  "detail": "{'stato': {'p': 0.8740234375, 'drawn': 89, 'total': 89, 'logo': 0, 'lead': 1, 'sx': 0, 'sw': 1080, 'cw': 1080}, 'murale': [129.4272003173828, 749.4336090087891, 1080]}"
  },
  {
   "device": "Ultrawide",
