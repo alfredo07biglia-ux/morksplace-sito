@@ -1045,7 +1045,8 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   var EVENTO={data:'2026-11-27', ora:'21:45', artista:'Marco Detto', tipo:'Piano solo', tipo_en:'solo piano', biglietto_en:'€10', foto:'img/marco-detto.webp', tel:'347 451 3225', biglietto:'10 €'};
   function confirmedEvent(){if(!EVENTO.data)return null;var d=pd(EVENTO.data);return d>=today12()?d:null}
   function nextEvent(){var c=confirmedEvent();if(c)return c;var t=today12(),sf=secondFriday(t.getFullYear(),t.getMonth());return sf>=t?sf:secondFriday(t.getFullYear(),t.getMonth()+1)}
-  function upcomingNights(n){var out=[],d=today12();for(var i=0;i<60&&out.length<n;i++){var w=d.getDay();if(w>=2&&w<=4)out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
+  function upcomingNights(n){var out=[],d=today12(),ce=typeof confirmedEvent==='function'?confirmedEvent():null;for(var i=0;i<60&&out.length<n;i++){var w=d.getDay();if((w>=2&&w<=4)||(ce&&iso(d)===iso(ce)))out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
+  function isEvDate(v){var ce=confirmedEvent();return !!(ce&&v===iso(ce))}
   var DAYS_EN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], MONTHS_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
   function longDate(d){var s=LANG==='en'?DAYS_EN[d.getDay()]+' '+d.getDate()+' '+MONTHS_EN[d.getMonth()]:DAYS[d.getDay()]+' '+d.getDate()+' '+MONTHS_FULL[d.getMonth()];return s.charAt(0).toUpperCase()+s.slice(1)}
   function pd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2],12)}
@@ -1062,6 +1063,10 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
   function waMessage(){
     var n=parseInt(wPeople.value,10)||1, dd=wDate.value?pd(wDate.value):null;
     var name=wName.value.trim(), card=wCard.value.trim();
+    if(dd&&isEvDate(wDate.value)){
+      if(LANG==='en')return "Hi! I'd like to book a table for "+EVENTO.artista+"'s concert at Mòrk's Place, "+longDate(dd)+" at "+fmtTime(EVENTO.ora)+", for "+n+(n===1?' person':' people')+".\n"+"Name: "+(name||'…')+"\nARCI card no.: "+(card||'…')+"\nThank you!";
+      return "Ciao! Vorrei prenotare un tavolo per il concerto di "+EVENTO.artista+" da Mòrk's Place, "+longDate(dd).toLowerCase()+" alle "+EVENTO.ora+", per "+n+(n===1?' persona':' persone')+".\n"+"Nome: "+(name||'…')+"\nTessera ARCI n°: "+(card||'…')+"\nGrazie!";
+    }
     if(LANG==='en')return "Hi! I'd like to book a table at Mòrk's Place for "+(dd?longDate(dd):'…')+" at "+fmtTime(wTime.value||ORARIO)+", for "+n+(n===1?' person':' people')+".\n"+
       "Name: "+(name||'…')+"\nARCI card no.: "+(card||'…')+"\nThank you!";
     return "Ciao! Vorrei prenotare un tavolo da Mòrk's Place per "+(dd?longDate(dd).toLowerCase():'…')+" alle "+(wTime.value||ORARIO)+", per "+n+(n===1?' persona':' persone')+".\n"+
@@ -1082,7 +1087,9 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     if(touched&&miss.length){wErr.hidden=false;wErr.textContent=L('Per prenotare compila tutti i campi: manca ','To book, please fill in every field. Missing: ')+miss.map(function(x){return x[1]}).join(', ')+'.'}
     else wErr.hidden=true;
   }
+  function syncTime(){var ev=isEvDate(wDate.value);wTime.disabled=ev;wTime.closest('.fld').style.opacity=ev?'.55':'';var o=wTime.querySelector('option[data-ev]');if(ev){if(!o){o=document.createElement('option');o.setAttribute('data-ev','1');wTime.appendChild(o)}o.value=o.textContent=EVENTO.ora;wTime.value=EVENTO.ora}else if(o){o.remove();if(!wTime.value)wTime.selectedIndex=0}}
   function syncWa(){
+    syncTime();
     var m=waMessage(), miss=waMissing(), ok=!miss.length;
     wPrev.innerHTML='<b>'+L('Messaggio che invierai','The message you\'ll send')+'</b><br>'+esc(m).replace(/\n/g,'<br>');
     if(!ok){wBtn.href='#prenota';wBtn.removeAttribute('target');wBtn.setAttribute('aria-disabled','true');wBtn.classList.add('is-off')}
@@ -1138,6 +1145,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
     if(!confirmedEvent())$('#evLead').textContent=L('Musica dal vivo un venerdì al mese: la data qui sopra è indicativa, quella confermata la trovi sul canale WhatsApp. Ingresso con la tessera ARCI.','Live music one Friday a month: the date above is indicative, the confirmed one is posted on our WhatsApp channel. Entry with an ARCI membership card.');
     if(confirmedEvent()){
       $('#evLead').textContent=LANG==='en'?EVENTO.artista+', '+EVENTO.tipo_en+': standards, original compositions and improvisation. Ticket '+EVENTO.biglietto_en+', members only (ARCI card).':EVENTO.artista+', '+EVENTO.tipo.toLowerCase()+': standard, composizioni originali e improvvisazione. Biglietto '+EVENTO.biglietto+', ingresso riservato ai soci ARCI.';
+      setTimeout(function(){var h=$('#evHow');if(h&&!h.querySelector('.ev-book')){var a=document.createElement('a');a.className='btn metal ev-book';a.href='#prenota';a.style.marginTop='14px';a.innerHTML='<span class="lm-label">'+L('Prenota per il concerto','Book for the concert')+'</span>';a.addEventListener('click',function(){var ce=confirmedEvent();if(ce){wDate.value=iso(ce);syncWa()}});h.appendChild(a)}},0);
       $('#evHow').innerHTML=LANG==='en'?'<strong>Limited seats: book your table</strong><p>Call or message <a href="tel:+39'+EVENTO.tel.replace(/\s/g,'')+'" style="color:var(--text);text-underline-offset:4px">'+esc(EVENTO.tel)+'</a>. You need an ARCI membership card to enter: if you don\'t have one, <a href="#tessera" style="color:var(--text);text-underline-offset:4px">request it here</a>.</p>':'<strong>Posti limitati: prenota il tavolo</strong><p>Chiama o scrivi al <a href="tel:+39'+EVENTO.tel.replace(/\s/g,'')+'" style="color:var(--text);text-underline-offset:4px">'+esc(EVENTO.tel)+'</a>. Per entrare serve la tessera ARCI: se non ce l\'hai, <a href="#tessera" style="color:var(--text);text-underline-offset:4px">chiedila qui</a>.</p>';
     }
     $('#doveEv').textContent=LANG==='en'?(confirmedEvent()?'Next: '+label+', '+fmtTime(EVENTO.ora)+', '+EVENTO.artista:'Indicative date: '+label):(confirmedEvent()?'Il prossimo: ':'Data indicativa: ')+label.toLowerCase()+(confirmedEvent()?', ore '+EVENTO.ora+', '+EVENTO.artista:'');
@@ -1152,7 +1160,7 @@ footer{background:linear-gradient(180deg,rgba(14,27,42,.55) 0%,rgba(18,48,74,.65
         : '<div class="poster-empty"><small>'+esc(label)+'</small><strong>'+L('Programma in arrivo','Programme coming soon')+'</strong><p>'+L('Chi suona lo annunciamo sul canale WhatsApp, insieme alla locandina.','We announce who is playing on our WhatsApp channel, together with the poster.')+'</p></div>';
     }
     if(!wDate.options.length||wDate._lang!==LANG){
-      var keep=wDate.value; wDate.innerHTML=upcomingNights(10).map(function(n){return '<option value="'+iso(n)+'">'+longDate(n)+'</option>'}).join(''); wDate._lang=LANG; if(keep)wDate.value=keep;
+      var keep=wDate.value; wDate.innerHTML=upcomingNights(10).map(function(n){return '<option value="'+iso(n)+'">'+longDate(n)+(isEvDate(iso(n))?' · '+L('concerto di ','concert: ')+EVENTO.artista:'')+'</option>'}).join(''); wDate._lang=LANG; if(keep)wDate.value=keep;
     }
     syncWa();
   }
